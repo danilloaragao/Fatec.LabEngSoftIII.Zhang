@@ -1,0 +1,112 @@
+
+/*geral*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    color: #323232;
+    border: none;
+}
+
+input, label {
+    display: block;
+    width:100%;
+}
+
+input:focus, label:focus {
+    outline:none;
+}
+
+a { /* dá cor aos termos de uso*/
+    color: #ad0b47;
+}
+
+body {
+    padding-top: 5vh; /*view height -> 5% da tela*/
+    background-image:url(forca.jpg);
+    background-size: cover;
+    background-position-y: -350px;
+}
+
+/* form*/
+#main-container { /* formata a caixa principal*/
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#main-container h1 { /* formata o titulo da cx principal*/
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.25rem; /* adaptada ao elemento root*/
+}
+
+form {/* */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.full-box {/* */
+    flex: 1 1 100%;
+    position: relative;
+}
+
+.half-box {/* espaçar ao dar */
+    flex: 1 1 45%;
+    position: relative;
+}
+
+.spacing { /* espaçamento entre os campos*/
+    margin-right: 2.5%;
+}
+
+label { /* */
+    font-weight: bold;
+    font-size: 0.8rem; /* 80% da fonte do elemento root da pagina*/
+}
+
+input { /* cor e formatação das letras do input*/
+    border-bottom: 2px solid #323232;
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+input:focus {/* cor da linha ao dar o input*/
+    border-color: #ad0b47;
+}
+
+input[type="submit"]{ /* botão cadastro*/
+    background-color: #ad0b47;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#agreement {/* coloca o termos de uso à direita*/
+    margin-right: 5px;
+}
+
+#agreement, #agreement-label { /* coloca a cx e o label dos termos de uso em 1 linha só*/
+    display: inline-block;
+    width: auto;
+}
+
+/* validações*/
+.error-validation {
+    color: #FF1A1A;
+    position: absolute;
+    top: 57px;
+    font-size: 0.8rem;
+}
+
+.template{
+    display:none;
+}

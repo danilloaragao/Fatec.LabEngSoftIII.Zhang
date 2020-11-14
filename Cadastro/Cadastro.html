@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form de Registro com validaçoes JS </title>
+
+    <link rel="stylesheet" href=".\cadastro.css">
+    
+</head>
+
+<body>
+    <div id="main-container">
+        <h1> Cadastre-se para acessar o Jogo</h1>
+        <form id="register-form">
+            <div class="full-box"> 
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Digite seu e-mail"  data-required data-email-validate>
+            </div>
+            <div class="full-box">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" placeholder="Digite seu nome" data-max-length="25" data-only-letters>
+            </div>
+            <div class="half-box spacing">
+                <label for="password">Senha</label>
+                <input type="password" name="password" id="password" placeholder="Digite a sua senha" data-min-length="6" data-required data-password-validate>
+            </div>
+            <div class="half-box spacing">
+                <label for="passconfirmation">Confirmação de Senha</label>
+                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha" data-min-length="6" data-equal="password" data-required>
+            </div>
+            <div class="full-box">
+                <input type="submit" id="btn-submit" value="Cadastrar">
+            </div>
+        </form>
+    </div>
+    <p class="error-validation template"></p>  
+
+
+
+    <script type="text/javascript" src=".\Cadastro.js"></script>
+</body>
+</html>
