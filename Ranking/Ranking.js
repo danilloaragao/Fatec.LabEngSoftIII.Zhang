@@ -14,6 +14,9 @@ btnFecharModal.addEventListener('click', function(){
     document.querySelector('.msg-modal').style.display = 'none';
     senha.value = "";
     senhaConf.value = "";
+    senha.style.borderBottomColor = "#942fd8"
+    senhaConf.style.borderBottomColor = "#942fd8";
+    msgErroSenha.innerHTML = "";
  
 })
        
