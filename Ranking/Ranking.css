@@ -1,0 +1,263 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #222222;
+}
+
+.container {
+    height: 100%;
+    /* display: flex; */
+}
+
+.header {
+    height: 164px;
+    padding: 90px 100px 0px;
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+.footer {
+    height: 640px;
+    width: 100%;
+    background: url(../assets/img_footer.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-left: 310px;
+    box-sizing: border-box;
+    font-size: 33px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 120px;
+}
+
+.content {
+    height: 886px;
+    background: url(../assets/img_arvores.svg);
+    background-position-y: -137%;
+    background-position-x: 36%;
+    background-color: #522365;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.minhaConta {
+    height: 606px;
+    width: 48%;
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+
+.foto-perfil {
+    margin: 30px 0px 50px;
+}
+
+.titulo-card {
+    color: #7B2DAE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.text-highlight {
+    color: #7B2DAE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: 35px;
+}
+
+.text-content {
+    color: #191919;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    float: right;
+}
+
+.text-block > div {
+    margin-bottom: 30px;
+}
+
+#lnk-red-senha:hover{
+  color: #ac75d1;
+  border-bottom: #ac75d1 ;
+}
+
+ /*Card para listagem do  Ranking    */
+
+.ranking {
+    height: 606px;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+
+.lista-ranking {
+    list-style: none;
+    width: calc(100% - 148px);
+    padding: 0;
+    margin: 30px 0px 50px;
+}
+
+.item-ranking {
+    height: 73px;
+    margin-bottom: 15px;
+    background-color: #222222;
+    border-radius: 15px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 25px 30px;
+    box-sizing: border-box;
+}
+
+.pontos {
+    float: right;
+}
+
+.item-ranking span:first-child {
+    margin-right: 30px;
+}
+
+li:nth-child(even) .item-ranking {
+    background-color: #7E737D;
+}
+
+.top-menu span {
+    margin-left: 138px;
+    padding-left: 16px;
+    border-left: 3px solid #522365;
+}
+
+
+  /* modal para alteração de senha */
+
+  .modal-container{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: white;
+    border-radius: 10px;
+    width: 800px;
+    min-width: 350px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset -4px -1px 20px 2px #31114e52;
+    position: relative;
+}  
+
+.titulo-modal {
+    color: #7B2DAE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: auto;
+    margin-top: 70px;
+    margin-bottom: 60px;
+    margin-left: auto;
+}
+
+.form-senha > div{
+    margin-bottom: 30px;
+}
+
+input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #7B2DAE;
+    font-size: 22px;
+    outline-style: none;
+   
+}
+
+input[type="password"]:focus {
+    border-bottom: 3px solid #7B2DAE  ;
+
+}
+
+
+.btn-enviar {
+    background: #7B2DAE;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 250px;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    outline-style: none;
+    font-size: larger;
+}
+
+.btn-fechar {
+    right: -10px;
+    top: -10px;
+    position: absolute;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+    background: #7B2DAE;
+    color: white;
+    outline-style: none;
+    cursor: pointer;
+}
+
+button:hover{
+  background:#942fd8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.erro-senha{
+    color: red;
+}
+
+.msg-modal{
+    color: #942fd8;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    margin: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

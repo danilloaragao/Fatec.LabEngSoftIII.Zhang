@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta</title>
+    <link rel="stylesheet" href="ranking.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>OLÁ, FULANO!!</div>
+            <div class="top-menu">
+                <span>LOJA</span> 
+                <span>MINHA CONTA</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="card-minha-conta" class="minhaConta"> 
+                <div class="titulo-card">MINHA CONTA</div>
+                <div class="foto-perfil"><img src="../assets/img_profile.svg" alt="Foto do perfil"></div>
+                <div class="text-block">
+                    <div>
+                        <span class="text-highlight">nome de usuario</span>
+                        <span class="text-content">Vitao_gamer666</span>
+                    </div>
+                    <div>
+                        <span class="text-highlight">email</span>
+                        <span class="text-content">vitao_maneiro@gmail.com</span>
+                    </div>
+                    <div>
+                        <a id="lnk-red-senha" class="text-highlight" href="#">alterar senha</a>
+                    </div>
+                </div>               
+            </div>
+            <div class="ranking">
+                <div class="titulo-card">RANKING</div>
+                <ul class="lista-ranking">
+                    <li><div class="item-ranking"><span>1</span> <span>nome</span> <span class="pontos">100 Pts</span></div></li>
+                    <li><div class="item-ranking"><span>1</span> <span>nome</span> <span class="pontos">100 Pts</span></div></li>
+                    <li><div class="item-ranking"><span>1</span> <span>nome</span> <span class="pontos">100 Pts</span></div></li>
+                    <li><div class="item-ranking"><span>1</span> <span>nome</span> <span class="pontos">100 Pts</span></div></li>
+                    <li><div class="item-ranking"><span>1</span> <span>nome</span> <span class="pontos">100 Pts</span></div></li>
+                </ul>                
+            </div>
+        </div>
+        <div class="footer">
+            <nav>
+                <a href="#">Home</a> 
+                <a href="#">Sobre o jogo</a> 
+                <a href="#">Ajuda</a> 
+                <a href="#">Minha Conta</a>
+            </nav>
+    </div>   
+ 
+    </div>
+
+    <div id="modal-container" class="modal-container">
+        <div class="modal">
+            <button id="btn-fechar"  class="btn-fechar">X</button>
+            <div class="modal-content">
+                <div class="titulo-modal">ALTERAR SENHA</div>
+                <div class="form-senha">
+                    <div>
+                        <span class="text-highlight">Nova senha</span>
+                        <span class="text-content"><input id="nova-senha" type="password"></span>
+                    </div>
+                
+                    <div>
+                        <span class="text-highlight">Confirme a senha</span>
+                        <span class="text-content"><input id="nova-senha-conf" type="password"></span>
+                    </div>
+                    <div>
+                        <p id="erro-senha" class="erro-senha"></p>
+                    </div>
+                </div>   
+                <div class="div-botao">
+                    <button id="btn-enviar" class="btn-enviar">Enviar</button>
+                </div>
+            </div>    
+            <p class="msg-modal"></p>          
+        </div>
+    </div>
+    
+    <script src="ranking.js"></script>    
+</body>
+</html>
