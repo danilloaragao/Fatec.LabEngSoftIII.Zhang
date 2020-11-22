@@ -22,7 +22,7 @@ body {
 }
 
 .footer {
-    height: 640px;
+    height: 70%;
     width: 100%;
     background: url(../assets/img_footer.svg);
     background-repeat: no-repeat;
