@@ -1,7 +1,9 @@
-//TODO: Remover essa linha ao integrar sistema
-localStorage.setItem('usuario','{"id": 1,"login": "teste","email": "teste@asdf","experiencia": 0,"experienciaProximoNivel": 200,"nivel": 0,"skins": [], "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE0IiwibmFtZWlkIjoidGVzdGUiLCJpc2FkbSI6IjAifQ.IDrIWOz8SXQilW2eV5fPzfuyJ7Lg7SHyz6_rrZ4JMcI"}')
+//TODO: Remover essa linha ao implantar sistema
+localStorage.setItem('usuario','{"id": 1,"login": "vitao_gamer666","email": "vitao_maneiro@gmail.com","experiencia": 0,"experienciaProximoNivel": 200,"nivel": 0,"skins": [], "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE0IiwibmFtZWlkIjoidGVzdGUiLCJpc2FkbSI6IjAifQ.IDrIWOz8SXQilW2eV5fPzfuyJ7Lg7SHyz6_rrZ4JMcI"}')
 //--------------------------------------------
 
+var username = document.getElementById('mc-username');
+var email = document.getElementById('mc-email');
 var senha = document.getElementById('nova-senha');
 var senhaConf = document.getElementById('nova-senha-conf');
 var msgErroSenha = document.getElementById('erro-senha');
@@ -11,6 +13,7 @@ var btnFecharModal = document.getElementById('btn-fechar');
 
 
 document.addEventListener("DOMContentLoaded", function(){
+    getLocalUserInformation();
     getRanking();
 });
 
@@ -26,8 +29,17 @@ senha.addEventListener('keyup', validarSenha);
      senhaConf.addEventListener('keyup', validarSenha)
  })
 
-btnRedefinirSenha.addEventListener('click', putNovaSenha)
-    
+btnRedefinirSenha.addEventListener('click', putNovaSenha);
+
+function getLocalUserInformation(){
+    var usuario = JSON.parse(localStorage.getItem("usuario"))
+    var usernameVar =  usuario.login;
+    var emailVar = usuario.email;
+
+    username.innerHTML = usernameVar;
+    email.innerHTML = emailVar;
+}
+
 function validarSenha() {
     var novaSenha = senha.value;
     var novaSenhaConf = senhaConf.value;
@@ -120,8 +132,7 @@ function getRanking(){
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
-    }
-    
+    }  
        
 
     fetch("https://zhang-api.herokuapp.com/api/Jogo/Ranking", requestOptions)
