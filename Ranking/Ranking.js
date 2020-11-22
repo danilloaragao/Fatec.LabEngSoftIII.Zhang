@@ -1,3 +1,7 @@
+//TODO: Remover essa linha ao integrar sistema
+localStorage.setItem('usuario','{"id": 1,"login": "teste","email": "teste@asdf","experiencia": 0,"experienciaProximoNivel": 200,"nivel": 0,"skins": [], "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE0IiwibmFtZWlkIjoidGVzdGUiLCJpc2FkbSI6IjAifQ.IDrIWOz8SXQilW2eV5fPzfuyJ7Lg7SHyz6_rrZ4JMcI"}')
+//--------------------------------------------
+
 var senha = document.getElementById('nova-senha');
 var senhaConf = document.getElementById('nova-senha-conf');
 var msgErroSenha = document.getElementById('erro-senha');
@@ -6,19 +10,14 @@ var btnAbrirModal = document.getElementById('lnk-red-senha');
 var btnFecharModal = document.getElementById('btn-fechar');
 
 
+document.addEventListener("DOMContentLoaded", function(){
+    getRanking();
+});
+
+
 btnAbrirModal.addEventListener('click', abrirModal)
 
-btnFecharModal.addEventListener('click', function(){
-    document.getElementById('modal-container').style.display = "none";
-    document.querySelector('.modal-content').style.display = 'flex';
-    document.querySelector('.msg-modal').style.display = 'none';
-    senha.value = "";
-    senhaConf.value = "";
-    senha.style.borderBottomColor = "#942fd8"
-    senhaConf.style.borderBottomColor = "#942fd8";
-    msgErroSenha.innerHTML = "";
- 
-})
+btnFecharModal.addEventListener('click', fecharModal)
        
 senha.addEventListener('keyup', validarSenha);
 
@@ -54,6 +53,17 @@ function abrirModal(){
     document.getElementById('modal-container').style.display = "flex";
 }
 
+function fecharModal(){
+    document.getElementById('modal-container').style.display = "none";
+    document.querySelector('.modal-content').style.display = 'flex';
+    document.querySelector('.msg-modal').style.display = 'none';
+    senha.value = "";
+    senhaConf.value = "";
+    senha.style.borderBottomColor = "#942fd8"
+    senhaConf.style.borderBottomColor = "#942fd8";
+    msgErroSenha.innerHTML = "";
+}
+
 function mensagemModal(mensagem){
     document.querySelector('.modal-content').style.display = 'none';
     document.querySelector('.msg-modal').style.display = 'flex'
@@ -62,9 +72,6 @@ function mensagemModal(mensagem){
 
 
 function putNovaSenha(){
-    //TODO: Remover essa linha ao integrar sistema
-    localStorage.setItem('usuario','{"id": 1,"login": "teste","email": "teste@asdf","experiencia": 0,"experienciaProximoNivel": 200,"nivel": 0,"skins": [], "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYW1laWQiOiJTdXBlclVzZXIiLCJpc2FkbSI6IjEifQ.22d5M8Zgg-Kh0CUAKVmntMuliEegGJ-MR4opvvfiQdk"}')
-     //--------------------------------------------
 
 if (validarSenha()){
     var usuario = JSON.parse(localStorage.getItem("usuario"))
@@ -100,3 +107,39 @@ if (validarSenha()){
     }
 }
 
+function getRanking(){
+    var usuario = JSON.parse(localStorage.getItem("usuario"))
+    var token = usuario.token;
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "text/plain");
+    myHeaders.append("Content-Type", "application/json-patch+json");
+    myHeaders.append("token", token);
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    }
+    
+       
+
+    fetch("https://zhang-api.herokuapp.com/api/Jogo/Ranking", requestOptions)
+        .then(response => response.json()) 
+        .then(data => { showRanking(data);}) 
+        .catch(error => {});
+}
+
+
+function showRanking(rankingArray){
+    var htmlRanking = rankingArray.map( user => {
+       return `
+                <li><div class="item-ranking">
+                <span>${user.posicao}</span> 
+                <span>${user.login}</span> 
+                <span class="pontos">${user.experiencia} Pts</span>
+                </div></li>`
+    }).join("");
+
+    document.querySelector(".lista-ranking").innerHTML = htmlRanking;
+}
