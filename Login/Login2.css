@@ -1,0 +1,144 @@
+body{
+    margin:0;
+    height:100vh;
+    background-color: #222222;
+}
+
+.container{
+    height:100%;
+}
+
+header{
+    height:20vh;
+    padding: 90px 100px 0px;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 50px;
+    right: 100px;
+
+}
+
+.nav-header{
+    border-left: 3px solid #942FD8;
+    padding-left: 10px;
+}
+
+.content{
+    height: 580px;
+    background: url(img_arvores.svg);
+    background-position-y: -196%;
+    background-position-x: 71%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.card-login{
+    height: 303px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 10px auto;
+    margin-bottom: 25px;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #7b2dae;
+    width: 75%;
+}
+
+.titulo-card{
+    margin-bottom: 50px;
+    margin-left: 125px ;
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid #7b2dae;
+    margin-bottom: 10px;
+    outline-style: none;
+}
+
+label{
+    margin-bottom: 10px;
+}
+
+.esqueci{
+    display: inline;
+}
+
+.forgot-password{
+    float: right;
+}
+
+.btn-enviar{
+    background: #7b2dae;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 180px;
+    height: 35px;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    outline-style: none;
+
+}
+
+button:hover{
+    background: #942FD8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footer {
+    height: 70%;
+    width: 100%;
+    background: url(img_footer.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-left: 310px;
+    box-sizing: border-box;
+    font-size: 27px;
+    font-family: 'Montserrat', sans-serif;
+}
+footer nav{
+    display: inline;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 120px;
+}
+
+.cadastra{
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-size: 20px;
+}
+
+.cadastra a{
+    color: white;
+    font-weight: bold;
+}
