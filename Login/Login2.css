@@ -36,7 +36,6 @@ header a{
     background-position-y: -196%;
     background-position-x: 71%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     
 }
