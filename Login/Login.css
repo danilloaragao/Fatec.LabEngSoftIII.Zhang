@@ -7,7 +7,8 @@
  body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-color: #522365;
+
 }
 
 .card-container.card {
@@ -16,6 +17,7 @@
 }
 
 .btn {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     height: 36px;
     -moz-user-select: none;
@@ -68,6 +70,7 @@
     color: #404040;
     line-height: 2;
     margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     text-align: center;
     overflow: hidden;
@@ -108,11 +111,12 @@
 
 .btn-signin {
     /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
+    background-color: #522365;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
-    font-weight: 700;
-    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
     height: 36px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -131,11 +135,45 @@
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #222222;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.footer {
+    height: 640px;
+    width: 100%;
+    background: url(img_footer.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-left: 315px;
+    box-sizing: border-box;
+    font-size: 33px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 120px;
+}
+
+.content {
+    height: 886px;
+    background: url(img_arvores.svg);
+    background-position-y: -137%;
+    background-position-x: 36%;
+    background-color: #522365;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
