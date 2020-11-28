@@ -15,15 +15,95 @@ a:hover{    text-decoration: none;}
 .button-start:disabled:after  {   background-image: linear-gradient(to right, #ccc , #ccc);  transition: all 0.3s ease;  text-decoration: none; }
 .cont-menu  { margin: 3em auto;}
 #form {          max-width: 80%;        margin: 25px auto;        text-align: end;    }
-#form input {    margin: 0 5px;    text-align: center;    line-height: 65px;    font-size: 35px;    border: solid 1px #ccc;    box-shadow: 0 0 5px #ccc inset;    outline: none;    width: 10%;    transition: all 0.2s ease-in-out;    border-radius: 3px;}
+#form input {    margin: 0 5px;    text-align: center;    line-height: 55px;    font-size: 25px;    border: solid 1px #ccc;    box-shadow: 0 0 5px #ccc inset;    outline: none;    width: 7%;    transition: all 0.2s ease-in-out;    border-radius: 3px;}
 #form input:focus {    border-color: purple;    box-shadow: 0 0 5px purple inset;  }
 #form input::-moz-selection {    background: transparent;  }
 #form input::selection {    background: transparent;  }
 #div-hint{    max-width: 80%;    margin: 25px auto;    text-align: end;    color: #ffffff;    font-size: 2em;}
 .theme{    font-size: 0.6em!important;}
 .letter-area{    width: 80%;    margin: 3em auto;}
-.letter{    color: #ffffff;    font-size: 3em;    margin: 0px 25px; }
+.letter{    color: #ffffff;    font-size: 2em;    margin: 0px 25px; }
 .letter:hover{    color: #a3a3a3!important;     text-decoration: none!important;}
 .wrong{    color: darkred!important;}
 .right{    color: darkblue!important;}
 .girl-hanged{    height: 90vh;    width: auto;}
+#canvas {
+    width: 500px;
+    height: 600px;
+}
+
+
+
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.mymodal {
+    background: white;
+    border-radius: 10px;
+    width: 800px;
+    min-width: 350px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset -4px -1px 20px 2px #31114e52;
+    position: relative;
+}  
+
+.titulo-modal {
+    color: #7B2DAE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: auto;
+}
+
+.mensagem-modal {
+    color: #7B2DAE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn-enviar {
+    background: #7B2DAE;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 250px;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    outline-style: none;
+    font-size: larger;
+}
+
+
+button:hover{
+  background:#942fd8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}

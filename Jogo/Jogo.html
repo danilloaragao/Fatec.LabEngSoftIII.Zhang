@@ -25,7 +25,7 @@
 
             <div class="row">
                 <div class="col-4">
-                    <img class="girl-hanged" src="./../assets/forca1.png">
+                    <canvas id="canvas" onclick="abrirModal()"></canvas>
                 </div>
 
                 <div class="cont-menu col-8">
@@ -41,8 +41,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-
+    <div id="modal-container" class="modal-container">
+        <div class="mymodal">
+            <div class="modal-content">
+                <div class="titulo-modal">PARABÉNS!</div>
+                <p id="p-palavra" class="mensagem-modal"></p>
+                <p id="p-erros" class="mensagem-modal"></p>
+                <p id="p-dicas" class="mensagem-modal"></p>
+                
+                <div class="div-botao">
+                    <button id="btn-enviar" class="btn-enviar" onclick="jogarNovamente()">Jogar Novamente</button>
+                    <button id="btn-enviar" class="btn-enviar" onclick="voltar()">Voltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -1,7 +1,3 @@
-//TODO: Remover essa linha ao implantar sistema
-localStorage.setItem('usuario','{"id": 1,"login": "vitao_gamer666","email": "vitao_maneiro@gmail.com","experiencia": 0,"experienciaProximoNivel": 200,"nivel": 0,"skins": [], "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjE0IiwibmFtZWlkIjoidGVzdGUiLCJpc2FkbSI6IjAifQ.IDrIWOz8SXQilW2eV5fPzfuyJ7Lg7SHyz6_rrZ4JMcI"}')
-//--------------------------------------------
-
 var username = document.getElementById('mc-username');
 var email = document.getElementById('mc-email');
 var senha = document.getElementById('nova-senha');
