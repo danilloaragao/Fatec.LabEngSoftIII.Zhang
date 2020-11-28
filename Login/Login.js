@@ -50,10 +50,11 @@ function login(){
 function iniciar(){
     let dadosLogin = JSON.parse(localStorage.getItem('dadosLogin'))
     if (dadosLogin && dadosLogin.lembrar){
-        console.log(dadosLogin)
         document.getElementById('nome').value = dadosLogin.login;
         document.getElementById('senha').value = dadosLogin.senha;
         document.getElementById('lembrar').checked = dadosLogin.lembrar
+    }else{
+        localStorage.clear()
     }
 }
 
