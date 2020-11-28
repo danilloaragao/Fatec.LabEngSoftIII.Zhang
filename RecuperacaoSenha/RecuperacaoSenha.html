@@ -10,35 +10,20 @@
 
 <body>
     <div class="container">
-        <header>
-            <nav>
-                <a href="#">MINHA CONTA</a>
-            </nav>
-        </header>
-
-        <div class="content">
-            <div class="card">
-                <div class="titulo">RECUPERAR SENHA</div>
-                <div class='form'>
-                    <label for="input-email">email</label>
-                    <input id="input-email" type="text" placeholder="Digite o email cadastrado">
+         <div class="content">
+            <div id="card" class="card">
+                <div class="form">
+                <div class="titulo-card">RECUPERAR SENHA</div>
+                    <label for="input-email">E-mail/Login</label>
+                    <input id="input-email" type="text" placeholder="Digite o e-mail ou login cadastrado">
                     <div>
                         <p id="msg-erro" class="msg-erro"></p>
                     </div>
-                    <button id="btn-enviar">Enviar</button>
+                    <button id="btn-enviar" class="btn-enviar">Enviar</button>
                 </div>
                 <p class="msg-final"></p>
             </div>
         </div>
-
-        <footer>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Sobre o jogo</a>
-                <a href="#">Ajuda</a>
-                <a href="#">Minha Conta</a>
-            </nav>
-        </footer>
     </div>
     <script src="./RecuperacaoSenha.js"></script>
 </body>

@@ -20,7 +20,10 @@ function cadastro() {
 
     fetch("https://zhang-api.herokuapp.com/api/Usuario/Cadastro", requestOptions)
         .then(response => response.text())
-        .then(result => alert(result))
+        .then(result => {
+            alert(result)
+            window.location.href = "./../Login/Login.html"
+        })
         .catch(error => alert(error));
 
 }

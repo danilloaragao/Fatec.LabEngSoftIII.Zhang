@@ -1,0 +1,34 @@
+@import url('https://fonts.gloogleapis.com/css2?family=Poppings:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;    
+}
+
+.nav-bar h1 {
+    padding-left: 8rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    padding-right: 8rem;
+    padding-left: 1.2rem;
+    font-size: 1.2 rem;
+    border-left: 3px solid #522365;
+}
+
+.menu-jogo{
+    background-image: url(./../assets/bg-florest1.png);
+    max-height: 10px;
+}
+
+.logo{
+    font-size: 10px;
+}

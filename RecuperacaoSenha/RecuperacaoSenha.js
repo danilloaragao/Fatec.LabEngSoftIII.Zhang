@@ -15,24 +15,7 @@ email.addEventListener('keyup', () =>{
     }
 })
 
-
-function validarEmail(emailValue){
-
-    const regexp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-    if (!(regexp.test(emailValue))){
-        msgErro.innerHTML = "Email inválido";
-        email.style.borderBottomColor = "red";
-        return false;
-    }
-    return true;
-}
-
-
 function postPassword(emailValue){
-
-    if (validarEmail(emailValue)){
-
         let baseUrl = "https://zhang-api.herokuapp.com"
 
         var myHeaders = new Headers();
@@ -58,7 +41,6 @@ function postPassword(emailValue){
                 }
             }) 
             .catch(error => alert(error));
-    }     
 }
 
 

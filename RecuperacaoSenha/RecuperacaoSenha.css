@@ -2,11 +2,12 @@ body{
     margin: 0px;
     height: 100vh;
     background-color: #222222;
+    overflow-y: hidden;
 }
 
-.container {
-    height: 100%;
-    /* display: flex; */
+.container{
+    height:100%;
+    padding-top: 70px;
 }
 
 header {
@@ -32,49 +33,45 @@ header a {
 }
 
 
-.content {
+.content{
     height: 580px;
-    background: url(../assets/img_arvores.svg);
+    background: url(./../assets/img_arvores.svg);
     background-position-y: -196%;
     background-position-x: 71%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
 
-
-.card {
+.card{
     height: 303px;
     width: 35%;
     background-color: white;
     border-radius: 10px;
-    margin-right: 90px;
-    display: flex;
-    flex-direction: column;
+    display:flex;
+    justify-content: center;
     align-items: center;
-    padding-top: 60px;
-    box-sizing: border-box;
+    padding: 0px;
+    margin: 10px auto;
+    margin-bottom: 25px;
 }
 
-.titulo {
-    color: #7B2DAE;
-    font-weight: 600;
+.titulo-card{
+    margin-bottom: 50px;
+    text-align: center ;
 }
 
-.form {
+.form{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    margin-top: 25px;
-    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #7b2dae;
+    width: 75%;
 }
 
 label{
     align-self: flex-start;
     color:#7B2DAE;
 }
-
-
 
 input {
     border: none;

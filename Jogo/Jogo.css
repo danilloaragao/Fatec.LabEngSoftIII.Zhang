@@ -2,17 +2,10 @@ body{    font-family: 'Montserrat', sans-serif;
     height: 580px;
     background: url(./../assets/img_arvores.svg);
     background-position-y: -196%;
-    background-position-x: 71%;} 
+    background-position-x: 71%;
+    overflow-y: hidden;} 
 a:hover{    text-decoration: none;}
 .background-jogo{    background-image: url(./../assets/bg-florest1.png);    background-repeat: no-repeat;    background-size: contain;    height: 100%;    width: auto;}
-.title-zhang{color: #ffffff;font-size: 9rem;font-weight: lighter;}
-.button-start {  text-transform: uppercase;  padding: 10px 25px;  background-image: linear-gradient(to right, #b478e8 , #632678);  outline: none !important;  cursor: pointer;  transition: all 0.3s ease;  position: relative;  display: inline-block;border-radius: 0px;  color:#fff!important;  z-index: 1;  border: none;  text-decoration: none;     width: 25%;}
-.button-start:after {  position: absolute;border-radius: 0px;  content: "";  width: 0;  height: 100%;  top: 0;  right: 0;  z-index: -1;  background-image:linear-gradient(to right, #b478e8 , #b478e8);  transition: all 0.3s ease;  text-decoration: none;}
-.button-start:hover {  color: #fff;  border-color: #fff;border-radius: 0px;  text-decoration: none;}
-.button-start:hover:after {  left: 0;  width: 100%;}
-.button-start:active {  top: 0px;}
-.button-start:disabled {   background-image: linear-gradient(to right, #ccc , #ccc);  outline: none !important;  cursor: default;  transition: none;  position: relative;  display: inline-block; border-radius: 0px;  color:#333!important;  z-index: 1;  border: none;  text-decoration: none;}
-.button-start:disabled:after  {   background-image: linear-gradient(to right, #ccc , #ccc);  transition: all 0.3s ease;  text-decoration: none; }
 .cont-menu  { margin: 3em auto;}
 #form {          max-width: 80%;        margin: 25px auto;        text-align: end;    }
 #form input {    margin: 0 5px;    text-align: center;    line-height: 55px;    font-size: 25px;    border: solid 1px #ccc;    box-shadow: 0 0 5px #ccc inset;    outline: none;    width: 7%;    transition: all 0.2s ease-in-out;    border-radius: 3px;}
@@ -128,4 +121,8 @@ button:hover{
 
 .div-botao{
     margin-bottom: 20px;
+}
+
+.oculta{
+    display: none;
 }

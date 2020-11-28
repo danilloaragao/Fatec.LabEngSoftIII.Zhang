@@ -8,10 +8,11 @@ let currentFrame
 let ida
 let movimento = 0
 let jumpScare = './../assets/jumpScare.png'
+let pontosGanhos
 
 function carregarPalavra() {
     criarCanvas()
-    
+    pontosGanhos = 0
     quantidadeErros = 0
     dicasUsadas = 0
     acertos = 0
@@ -104,7 +105,6 @@ function clickLetra(idLetra) {
 
     if (acertos == palavraJogo.palavra.length) {
         apiAcertoPalavra()
-        abrirModalAcerto()
     }
 
     if (quantidadeErros > 4) {
@@ -116,6 +116,11 @@ function mostrarDica(numeroDica) {
     let dica = document.getElementById(`dica${numeroDica}`)
     dica.innerText = palavraJogo[`dica${numeroDica}`]
     dica.removeAttribute('onclick')
+
+    let proximaDica = document.getElementById(`dica${numeroDica + 1}`)
+    if (proximaDica)
+        proximaDica.setAttribute('class', 'theme')
+
     dicasUsadas++
 }
 
@@ -128,8 +133,8 @@ function skinMovement() {
     var width = sheetWidth / 5;
     var height = sheetHeight / 5;
 
-    var maxWidth = width/1.5;
-    var maxHeight = height/1.5;
+    var maxWidth = width / 1.5;
+    var maxHeight = height / 1.5;
 
     var character = new Image();
 
@@ -230,6 +235,14 @@ function abrirModalAcerto() {
     modal.appendChild(noLinha1)
     modal.appendChild(noLinha2)
     modal.appendChild(noLinha3)
+
+    if (pontosGanhos > 0) {
+        let noLinha4 = document.createElement('p')
+        let noTextoLinha4 = document.createTextNode(`Você ganhou ${pontosGanhos} pontos!`)
+        noLinha4.setAttribute('class', 'mensagem-modal')
+        noLinha4.appendChild(noTextoLinha4)
+        modal.appendChild(noLinha4)
+    }
 }
 
 function abrirModalGameOver() {
@@ -245,10 +258,11 @@ function fecharModal() {
 
 function apiAcertoPalavra() {
     let token = ''
+    let usuario
 
     let usuarioString = localStorage.getItem("usuario")
     if (usuarioString) {
-        let usuario = JSON.parse(usuarioString)
+        usuario = JSON.parse(usuarioString)
         token = usuario.token
     }
 
@@ -271,6 +285,21 @@ function apiAcertoPalavra() {
     }
 
     fetch("https://zhang-api.herokuapp.com/api/Jogo/Acerto", requestOptions)
+        .then(resp => resp.text())
+        .then(data => {
+            if (data != 'Jogador convidado.') {
+                if (usuario) {
+                    let usuarioAtual = JSON.parse(data)
+                    pontosGanhos = usuarioAtual.experiencia - usuario.experiencia
+
+                    localStorage.setItem("usuario", data)
+                    
+                }
+            }
+        })
+        .then(resul => 
+            abrirModalAcerto()
+            )
 }
 
 function jogarNovamente() {
@@ -297,20 +326,20 @@ function gameOver() {
 
 }
 
-function criarCanvas(){
+function criarCanvas() {
     let w = 600
     let h = 1150
     var ctx = document.createElement("canvas").getContext("2d"),
-    dpr = window.devicePixelRatio || 1,
-    bsr = ctx.webkitBackingStorePixelRatio ||
-          ctx.mozBackingStorePixelRatio ||
-          ctx.msBackingStorePixelRatio ||
-          ctx.oBackingStorePixelRatio ||
-          ctx.backingStorePixelRatio || 1;
+        dpr = window.devicePixelRatio || 1,
+        bsr = ctx.webkitBackingStorePixelRatio ||
+            ctx.mozBackingStorePixelRatio ||
+            ctx.msBackingStorePixelRatio ||
+            ctx.oBackingStorePixelRatio ||
+            ctx.backingStorePixelRatio || 1;
 
-let ratio = dpr / bsr;
+    let ratio = dpr / bsr;
 
-var can = document.createElement("canvas");
+    var can = document.createElement("canvas");
     can.width = w * ratio;
     can.height = h * ratio;
     can.style.width = w + "px";
@@ -319,8 +348,4 @@ var can = document.createElement("canvas");
     can.setAttribute('id', 'canvas')
 
     document.getElementById('div-canvas').appendChild(can)
-    // return can;
-
-
-    // <canvas id="canvas"></canvas>
 }
