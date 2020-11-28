@@ -28,8 +28,8 @@ a:hover{    text-decoration: none;}
 .right{    color: darkblue!important;}
 .girl-hanged{    height: 90vh;    width: auto;}
 #canvas {
-    width: 500px;
-    height: 600px;
+    width: 300px;
+    height: 575;
 }
 
 .modal-container{

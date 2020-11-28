@@ -10,6 +10,8 @@ let movimento = 0
 let jumpScare = './../assets/jumpScare.png'
 
 function carregarPalavra() {
+    criarCanvas()
+    
     quantidadeErros = 0
     dicasUsadas = 0
     acertos = 0
@@ -76,9 +78,6 @@ function carregarPalavra() {
 
             skinMovement()
         })
-        .catch(error => {
-            alert(error)
-        });
 }
 
 function clickLetra(idLetra) {
@@ -129,8 +128,8 @@ function skinMovement() {
     var width = sheetWidth / 5;
     var height = sheetHeight / 5;
 
-    var maxWidth = 250;
-    var maxHeight = 150;
+    var maxWidth = width/1.5;
+    var maxHeight = height/1.5;
 
     var character = new Image();
 
@@ -296,4 +295,32 @@ function gameOver() {
         abrirModalGameOver()
     }, 2000);
 
+}
+
+function criarCanvas(){
+    let w = 600
+    let h = 1150
+    var ctx = document.createElement("canvas").getContext("2d"),
+    dpr = window.devicePixelRatio || 1,
+    bsr = ctx.webkitBackingStorePixelRatio ||
+          ctx.mozBackingStorePixelRatio ||
+          ctx.msBackingStorePixelRatio ||
+          ctx.oBackingStorePixelRatio ||
+          ctx.backingStorePixelRatio || 1;
+
+let ratio = dpr / bsr;
+
+var can = document.createElement("canvas");
+    can.width = w * ratio;
+    can.height = h * ratio;
+    can.style.width = w + "px";
+    can.style.height = h + "px";
+    can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    can.setAttribute('id', 'canvas')
+
+    document.getElementById('div-canvas').appendChild(can)
+    // return can;
+
+
+    // <canvas id="canvas"></canvas>
 }
