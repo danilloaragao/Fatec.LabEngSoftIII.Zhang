@@ -32,8 +32,6 @@ a:hover{    text-decoration: none;}
     height: 600px;
 }
 
-
-
 .modal-container{
     width: 100vw;
     height: 100vh;
@@ -106,4 +104,28 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     height: 100%;
+}
+
+.corpo-jump-scare{
+    background-color: black;
+}
+
+.imagem-jump-scare{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.div-botao{
+    margin-bottom: 20px;
 }
