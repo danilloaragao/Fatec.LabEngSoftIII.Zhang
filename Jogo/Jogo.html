@@ -18,7 +18,8 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body onload="carregarPalavra()">
+    <script src="./Jogo.js"></script>
     <div class="container">
         <div class="background-jogo">
 
@@ -29,24 +30,14 @@
 
                 <div class="cont-menu col-8">
                     <div id="div-hint">
-                        <span class="theme">Tema</span> <br>
-                        <span><b>Halloween</b></span>
+                        <span class="theme" id="dica1" onclick="mostrarDica(1)">Mostrar Dica 1</span> <br>
+                        <span class="theme" id="dica2" onclick="mostrarDica(2)">Mostrar Dica 2</span> <br>
                     </div>
 
                     <div id="form">
-                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" disabled />
-                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" disabled />
-                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" disabled />
-                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" disabled />
-                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" disabled />
                     </div>
                     <br>
                     <div id="letters" class="letter-area">
-                        <a href="#" class="letter"> A </a>
-                        <a href="#" class="letter"> B </a>
-                        <a href="#" class="letter"> C </a>
-                        <a href="#" class="letter wrong"> D </a>
-                        <a href="#" class="letter"> E </a>
                     </div>
                 </div>
             </div>

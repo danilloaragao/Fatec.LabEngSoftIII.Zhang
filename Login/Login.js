@@ -56,3 +56,7 @@ function iniciar(){
         document.getElementById('lembrar').checked = dadosLogin.lembrar
     }
 }
+
+function entrarConvidado(){
+    window.location.href = "./../Jogo/Jogo.html"
+}

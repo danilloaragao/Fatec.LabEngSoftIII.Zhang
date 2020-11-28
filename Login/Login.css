@@ -32,7 +32,7 @@ header a{
 
 .content{
     height: 580px;
-    background: url(img_arvores.svg);
+    background: url(./../assets/img_arvores.svg);
     background-position-y: -196%;
     background-position-x: 71%;
     display: flex;
@@ -41,7 +41,7 @@ header a{
 }
 
 .card-login{
-    height: 303px;
+    height: 400px;
     width: 600px;
     background-color: white;
     border-radius: 10px;
@@ -109,7 +109,7 @@ button:hover{
 .footer {
     height: 70%;
     width: 100%;
-    background: url(img_footer.svg);
+    background: url(./../assets/img_footer.svg);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;

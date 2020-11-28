@@ -1,4 +1,8 @@
-body{    font-family: 'Montserrat', sans-serif; background-color: #522365 !important;} 
+body{    font-family: 'Montserrat', sans-serif;
+    height: 580px;
+    background: url(./../assets/img_arvores.svg);
+    background-position-y: -196%;
+    background-position-x: 71%;} 
 a:hover{    text-decoration: none;}
 .background-jogo{    background-image: url(./../assets/bg-florest1.png);    background-repeat: no-repeat;    background-size: contain;    height: 100vh;    width: auto;}
 .title-zhang{color: #ffffff;font-size: 9rem;font-weight: lighter;}

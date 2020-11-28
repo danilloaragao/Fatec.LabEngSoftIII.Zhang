@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,55 +8,57 @@
     <link rel="stylesheet" href="./Login.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body onload="iniciar()">
-<div class="container">
+    <div class="container">
         <header>
             <nav>
                 <a href="#" class="nav-header">MINHA CONTA</a>
             </nav>
         </header>
-    <div class="content">
-        <div id="card-login" class="card-login">
-    
-            <div class="form-login">
-                <div class="titulo-card">ENTRAR NA MINHA CONTA</div>
-                    <label for="email">email</label>
+        <div class="content">
+            <div id="card-login" class="card-login">
+
+                <div class="form-login">
+                    <div class="titulo-card">ENTRAR NA MINHA CONTA</div>
+                    <label for="email">Login</label>
                     <input id="nome" type="text">
-                    <label for="senha">senha</label>
+                    <label for="senha">Senha</label>
                     <input id="senha" type="password">
                     <div class="esqueci">
                         <input type="checkbox" value="remember-me" id="lembrar"> Lembre-se de mim
                         <a href="./../RecuperacaoSenha/RecuperacaoSenha.html" class="forgot-password">
-                        Esqueceu a senha?
+                            Esqueceu a senha?
                         </a>
                     </div>
                     <div class="div-botao">
                         <button id="btn-enviar" class="btn-enviar" onclick="login()">LOGIN</button>
+                        <button id="btn-jogar" class="btn-enviar" onclick="entrarConvidado()">Entrar como Convidado</button>
                     </div>
-                    
+
+                </div>
 
             </div>
-            
+            <div class="cadastra">
+                Novo por aqui? <a href="./../Cadastro/Cadastro.html">
+                    Cadastre-se
+                </a> de graça.
+            </div>
         </div>
-        <div class="cadastra">
-            novo por aqui? <a href="./../Cadastro/Cadastro.html">
-                  cadastre-se 
-            </a> de graça.
-        </div>
+
+        <!-- <div class="footer">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Sobre o jogo</a>
+                <a href="#">Ajuda</a>
+                <a href="#">Minha Conta</a>
+            </nav>
+        </div> -->
     </div>
-    
-    <div class="footer">
-        <nav>
-            <a href="#">Home</a> 
-            <a href="#">Sobre o jogo</a> 
-            <a href="#">Ajuda</a> 
-            <a href="#">Minha Conta</a>
-        </nav>
-        </div>
-</div>
 
 
 
     <script type="text/javascript" src="./Login.js"></script>
 </body>
+
 </html>
