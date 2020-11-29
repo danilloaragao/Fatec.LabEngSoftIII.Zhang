@@ -7,7 +7,7 @@ body{
 
 .container{
     height:100%;
-    padding-top: 70px;
+    margin-top: 20vh;
 }
 
 header {
@@ -36,10 +36,11 @@ header a {
 .content{
     height: 580px;
     background: url(./../assets/img_arvores.svg);
-    background-position-y: -196%;
-    background-position-x: 71%;
+    background-position-y: -197%;
+    background-position-x: 56%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .card{
@@ -47,12 +48,10 @@ header a {
     width: 35%;
     background-color: white;
     border-radius: 10px;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px;
-    margin: 10px auto;
-    margin-bottom: 25px;
+    flex-direction: column;
 }
 
 .titulo-card{
@@ -65,7 +64,8 @@ header a {
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     color: #7b2dae;
-    width: 75%;
+    margin: 50px;
+    position: absolute;
 }
 
 label{
@@ -98,7 +98,7 @@ button {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
+    margin-top: 60px;
     cursor: pointer;
     outline-style: none;
     font-size: 15px;
