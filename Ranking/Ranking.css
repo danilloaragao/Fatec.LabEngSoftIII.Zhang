@@ -39,7 +39,7 @@ body {
 
 .minhaConta {
     height: 500px;
-    width: 40%;
+    width: 33%;
     background-color: white;
     border-radius: 10px;
     margin-right: 90px;
@@ -114,13 +114,13 @@ body {
 }
 
 .item-ranking {
-    height: 60px;
+    height: 50px;
     margin-bottom: 15px;
     background-color: #222222;
     border-radius: 15px;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    padding: 20px 30px;
+    padding: 10px 30px;
     box-sizing: border-box;
 }
 
