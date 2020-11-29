@@ -4,7 +4,7 @@ body {
     background-color: #222222;
 }
 
-.container {
+.container-ranking {
     margin-top:0;
     height: 100%;
     /* display: flex; */
@@ -27,7 +27,7 @@ body {
 .content {
     height: 686px;
     background: url(../assets/img_arvores.svg);
-    background-position-y: -237%;
+    background-position-y: -290%;
     background-position-x: 36%;
     background-color: #522365;
     display: flex;
@@ -151,7 +151,7 @@ li:nth-child(even) .item-ranking {
     align-items: center;
 }
 
-.modal {
+.modal-ranking {
     background: white;
     border-radius: 10px;
     width: 800px;
