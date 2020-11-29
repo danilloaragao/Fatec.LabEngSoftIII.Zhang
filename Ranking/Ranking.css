@@ -1,11 +1,12 @@
 body {
     margin: 0;
-}
-
-.container-ranking {
-    height: 100%;
     height: 100vh;
     background-color: #222222;
+}
+
+.container {
+    margin-top:0;
+    height: 100%;
     /* display: flex; */
 }
 
@@ -21,15 +22,18 @@ body {
     font-size: 15px;
 }
 
+
+
 .content {
-    height: 886px;
+    height: 686px;
     background: url(../assets/img_arvores.svg);
-    background-position-y: -137%;
+    background-position-y: -237%;
     background-position-x: 36%;
     background-color: #522365;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top:-100px;
 }
 
 
@@ -122,11 +126,18 @@ body {
     margin-right: 30px;
 }
 
+li:nth-child(even) .item-ranking {
+    background-color: #7E737D;
+}
+
 .top-menu span {
     margin-left: 138px;
     padding-left: 16px;
     border-left: 3px solid #522365;
-} */
+}
+
+
+  /* modal para alteração de senha */
 
   .modal-container{
     width: 100vw;

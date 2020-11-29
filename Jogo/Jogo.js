@@ -320,10 +320,12 @@ function gameOver() {
     let corpo = document.getElementById('corpo')
     corpo.setAttribute('class', 'corpo-jump-scare')
     let container = document.getElementById('container')
+    let menu = document.getElementById('menu')
     let noImagem = document.createElement('img')
     noImagem.setAttribute('class', 'imagem-jump-scare')
     noImagem.setAttribute('src', jumpScare)
     container.innerText = ''
+    menu.innerText = ''
     container.appendChild(noImagem)
 
     setTimeout(() => {
