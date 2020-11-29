@@ -240,8 +240,9 @@ button:hover{
     margin: auto;
 }
 
-.modal-content {
+.modal-content-ranking {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
 }
