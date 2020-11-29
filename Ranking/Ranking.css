@@ -38,8 +38,8 @@ body {
 
 
 .minhaConta {
-    height: 606px;
-    width: 48%;
+    height: 500px;
+    width: 40%;
     background-color: white;
     border-radius: 10px;
     margin-right: 90px;
@@ -54,18 +54,23 @@ body {
     margin: 30px 0px 50px;
 }
 
+.foto-perfil img {
+    width: 120px;
+    height: 120px;
+}
+
 .titulo-card {
     color: #7B2DAE;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 26px;
+    font-size: 18px;
 }
 
 .text-highlight {
     color: #7B2DAE;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
     margin-right: 35px;
 }
 
@@ -73,12 +78,13 @@ body {
     color: #191919;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
     float: right;
 }
 
 .text-block > div {
     margin-bottom: 30px;
+    width: 350px;
 }
 
 #lnk-red-senha:hover{
@@ -89,7 +95,7 @@ body {
  /*Card para listagem do  Ranking    */
 
 .ranking {
-    height: 606px;
+    height: 500px;
     width: 35%;
     background-color: white;
     border-radius: 10px;
@@ -154,7 +160,7 @@ li:nth-child(even) .item-ranking {
 .modal-ranking {
     background: white;
     border-radius: 10px;
-    width: 800px;
+    width: 700px;
     min-width: 350px;
     height: 450px;
     display: flex;
@@ -198,13 +204,12 @@ input[type="password"]:focus {
     border: none;
     border-radius: 5px;
     color: white;
-    width: 250px;
-    height: 50px;
+    width: 200px;
+    height: 40px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    cursor: pointer;
+    margin-top: 40px;
     outline-style: none;
     font-size: larger;
 }
@@ -245,4 +250,5 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    margin-bottom: 70px;
 }
