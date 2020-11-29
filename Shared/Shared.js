@@ -22,13 +22,14 @@ function verificarLogin(){
 
 function areaLogada(){
   let usuarioStr = localStorage.getItem("usuario")
-
+  
   if(!usuarioStr){
     alert('Você precisa estar logado para acessar essa página.')
     window.location.href = "./../Login/Login.html"
     return
   }
-
+  
+  alert() 
     let usuario = JSON.parse(usuarioStr)
     if(!usuario.skins || !usuario.token){
       alert('Você precisa estar logado para acessar essa página.')
