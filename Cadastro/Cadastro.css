@@ -24,7 +24,7 @@ a { /* dá cor aos termos de uso*/
 body {
     background-color: #222222;
     background-image: url(../assets/img_arvores.svg);
-    background-position-y: -40px;
+    background-position-y: -24px;
     background-position-x: -379px;
     display: flex;
     align-items: center
