@@ -21,7 +21,7 @@
     <link type="text/css" href="./../Shared/Shared.css" rel="stylesheet" />
 </head>
 
-<body onload="carregarPalavra()" id="corpo">
+<body onload="iniciarTelaJogo()" id="corpo">
     <div id="menu"></div>
     <div class="container" id="container">
         <div class="background-jogo">
@@ -49,9 +49,8 @@
         <div class="mymodal">
             <div class="modal-content">
                 <div id="conteudo-modal" class="modal-message"> <img id='game-over'> </div>
-                <div class="div-botao">
-                    <button id="btn-enviar" class="btn-enviar" onclick="jogarNovamente()">Jogar Novamente</button>
-                    <button id="btn-enviar" class="btn-enviar" onclick="voltar()">Voltar</button>
+                <div class="div-botao" id="div-botao">
+                    <button id="btn-novo-jogo" class="btn-enviar" onclick="jogarNovamente()">Jogar Novamente</button>
                 </div>
             </div>
         </div>

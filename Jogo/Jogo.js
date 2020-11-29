@@ -9,9 +9,11 @@ let ida
 let movimento = 0
 let jumpScare = './../assets/jumpScare.png'
 let pontosGanhos
+let usuarioLogado = !!localStorage.getItem("usuario")
 
-function carregarPalavra() {
+function iniciarTelaJogo() {
     criarCanvas()
+    montarBotoesModal()
     pontosGanhos = 0
     quantidadeErros = 0
     dicasUsadas = 0
@@ -181,6 +183,7 @@ function abrirModalAcerto() {
     let linha1 = ''
     let linha2 = ''
     let linha3 = ''
+    let linha4 = ''
 
     linha1 = `Você acertou a palavra ${palavraJogo.palavra}`
 
@@ -204,6 +207,13 @@ function abrirModalAcerto() {
             break
         default:
             linha3 = `Usou ${dicasUsadas} dicas`
+    }
+    if (usuarioLogado) {
+        if (pontosGanhos > 0) {
+            linha4 = `Você ganhou ${pontosGanhos} pontos!`
+        }
+    } else {
+        linha4 = 'Faça o login para que seus pontos sejam contabilizados!'
     }
 
     document.getElementById('modal-container').style.display = "flex";
@@ -229,18 +239,16 @@ function abrirModalAcerto() {
     noLinha3.setAttribute('class', 'mensagem-modal')
     noLinha3.appendChild(noTextoLinha3)
 
+    let noLinha4 = document.createElement('p')
+    let noTextoLinha4 = document.createTextNode(linha4)
+    noLinha4.setAttribute('class', 'mensagem-modal')
+    noLinha4.appendChild(noTextoLinha4)
+
     modal.appendChild(noTitulo)
     modal.appendChild(noLinha1)
     modal.appendChild(noLinha2)
     modal.appendChild(noLinha3)
-
-    if (pontosGanhos > 0) {
-        let noLinha4 = document.createElement('p')
-        let noTextoLinha4 = document.createTextNode(`Você ganhou ${pontosGanhos} pontos!`)
-        noLinha4.setAttribute('class', 'mensagem-modal')
-        noLinha4.appendChild(noTextoLinha4)
-        modal.appendChild(noLinha4)
-    }
+    modal.appendChild(noLinha4)
 }
 
 function abrirModalGameOver() {
@@ -291,13 +299,13 @@ function apiAcertoPalavra() {
                     pontosGanhos = usuarioAtual.experiencia - usuario.experiencia
 
                     localStorage.setItem("usuario", data)
-                    
+
                 }
             }
         })
-        .then(resul => 
+        .then(resul =>
             abrirModalAcerto()
-            )
+        )
 }
 
 function jogarNovamente() {
@@ -346,4 +354,26 @@ function criarCanvas() {
     can.setAttribute('id', 'canvas')
 
     document.getElementById('div-canvas').appendChild(can)
+}
+
+function telaLogin() {
+    window.location.href = "./../Login/Login.html"
+}
+
+function montarBotoesModal() {
+    let divBtn = document.getElementById('div-botao')
+    let botao = document.createElement('button')
+    let noTexto=document.createTextNode('')
+    botao.setAttribute('id', 'btn-voltar')
+    botao.setAttribute('class', 'btn-enviar')
+    
+    if (usuarioLogado) {
+        botao.setAttribute('onclick', 'voltar()')
+        noTexto = document.createTextNode('Voltar')
+    }else{
+        botao.setAttribute('onclick', 'telaLogin()')
+        noTexto = document.createTextNode('Login')
+    }
+    botao.appendChild(noTexto)
+    divBtn.appendChild(botao)
 }

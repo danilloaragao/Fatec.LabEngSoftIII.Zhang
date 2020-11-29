@@ -1,11 +1,12 @@
-@import url('https://fonts.gloogleapis.com/css2?family=Poppings:wght@200;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
-
 .nav-bar-menu {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     color: white !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
 }
 
 .nav-bar-menu h1 {
@@ -35,10 +36,22 @@
 .menu-jogo-menu{
     background-color: #2b1236 !important;
     max-height: 80px !important;
+    font-family: 'Montserrat', sans-serif!important;
 }
 
 .logo-menu{
     font-size: 10px !important;
     text-align: left !important;
     font-family: "Times New Roman", Times, serif !important;
+    box-sizing: border-box !important;
+}
+
+.logo-menu h1{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
