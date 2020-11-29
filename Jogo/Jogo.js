@@ -328,6 +328,9 @@ function gameOver() {
     menu.innerText = ''
     container.appendChild(noImagem)
 
+    let audioJumpScare = new Audio('./../assets/jumpScare.mp3');
+    audioJumpScare.play();
+
     setTimeout(() => {
         abrirModalGameOver()
     }, 2000);
