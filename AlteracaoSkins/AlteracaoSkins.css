@@ -1,10 +1,10 @@
 @import url('https://fonts.gloogleapis.com/css2?family=Poppings:wght@200;400;600&display=swap');
 
-* {
-    box-sizing: border-box;
+body{
+    margin: 0;
 }
-
-body { 
+.container-skin { 
+    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     margin: 0;
     background-color: #222;

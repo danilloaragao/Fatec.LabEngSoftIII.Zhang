@@ -45,8 +45,6 @@ function carregarPalavra() {
         .then(result => {
             palavraJogo = JSON.parse(result)
 
-            console.log(palavraJogo)
-
             let containerLetras = document.getElementById('form')
             let areaLetras = document.getElementById('letters')
 
