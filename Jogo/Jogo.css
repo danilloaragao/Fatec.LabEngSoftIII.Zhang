@@ -24,7 +24,6 @@ a:hover {
 .background-jogo {
 	background-image: url(./../assets/bg-florest1.png);
 	background-repeat: no-repeat;
-	background-size: cover;
 	height: 130%;
 	width: 100% !important;
     background-position-y: 56%;
