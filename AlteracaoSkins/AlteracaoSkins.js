@@ -172,7 +172,6 @@ function skinMovement (src, movement, cols, rows, sheetWidth, sheetHeight) {
 
  function filterSkins (e) {
      let color;
-     console.log(e);
      switch (e.id) {
          case '1to20Filter':
              color = "green";

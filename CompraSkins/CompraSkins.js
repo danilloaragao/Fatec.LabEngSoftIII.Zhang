@@ -257,7 +257,6 @@ async function buySkin(url, token, skinID) {
     //load();
     const resp = await fetch(url, requestOptions);
     const respData = await resp.json();
-    //console.log(respData);
     //user.skins.push(respData);
     //localStorage.setItem("usuario", JSON.stringify(user));
 }

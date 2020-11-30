@@ -114,7 +114,7 @@ function clickLetra(idLetra) {
 
 function mostrarDica(numeroDica) {
     let dica = document.getElementById(`dica${numeroDica}`)
-    dica.innerText = palavraJogo[`dica${numeroDica}`]
+    dica.innerText = `Dica: ${palavraJogo[`dica${numeroDica}`]}`
     dica.removeAttribute('onclick')
 
     let proximaDica = document.getElementById(`dica${numeroDica + 1}`)
