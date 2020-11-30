@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./CompraSkins.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <!-- <link type="text/css" href="./../bootstrap-4.5.3-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="./../bootstrap-4.5.3-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-     -->
+     
     <script type="text/javascript" src="./../Shared/Shared.js"></script>
     <link type="text/css" href="./../Shared/Shared.css" rel="stylesheet" />
     
@@ -19,58 +19,58 @@
   <body>
     <script>areaLogada()</script>
     <div id="menu"></div>
-    <main id="main">
-        <div class="top-infos">
+    <div id="main" class="container-skin d-flex flex-wrap justify-content-center align-items-start">
+        <div class="top-infos container-infos d-flex justify-content-between align-items-center">
             <section class="section-skin">
-                <h1>Skins Disponíveis</h1>
+                <h2>Skins Disponíveis</h2>
             </section>
-            <section class="section-cash">
-                <h1>SALDO</h1>
+            <section id="saldo" class="section-cash">
+                <h2>SALDO:</h2>
             </section>
         </div>
-        <section class="botton-info">
-            <div id="skins-space" class="skins">      
+        <section class="botton-info container-botton d-flex justify-content-center align-items-center">
+            <div id="skins-space" class="skins d-flex flex-wrap justify-content-center align-items-center">      
             </div>
-            <div class="cashs">
+            <div class="cashs container-cash d-flex flex-wrap justify-content-center align-items-center">
                 <div class="cash mediumcash">
                     <img src="./MediumCash.png" alt="">
-                    <div class="cash-info">
-                        <h5>20 Moedas</h5>
-                        <button class="ComprarCash">
+                    <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
+                        <h6>20 Moedas</h6>
+                        <button id="btn20" class="ComprarCash">
                             R$ 10,00
                         </button>                    
                     </div>                
                 </div>
                 <div class="cash mediumcash">    
                     <img src="./MediumCash.png" alt="">
-                    <div class="cash-info">
-                        <h5>40 Moedas</h5>
-                        <button class="ComprarCash">
+                    <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
+                        <h6>40 Moedas</h6>
+                        <button id="btn40" class="ComprarCash">
                             R$ 15,00
                         </button>                    
                     </div>             
                 </div>
                 <div class="cash max-cash">
                     <img src="./MaxCash.png" alt="">
-                    <div class="cash-info">
-                        <h5>100 Moedas</h5>
-                        <button class="ComprarCash">
+                    <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
+                        <h6>100 Moedas</h6>
+                        <button id="btn100" class="ComprarCash">
                             R$ 25,00
                         </button>                    
                     </div> 
                 </div>
                 <div class="cash max-cash">
                     <img src="./MaxCash.png" alt="">
-                    <div class="cash-info">
-                        <h5>300 Moedas</h5>
-                        <button class="ComprarCash">
+                    <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
+                        <h6>300 Moedas</h6>
+                        <button id="btn300" class="ComprarCash">
                             R$ 40,00
                         </button>                    
                     </div> 
                 </div>
-                <div class="promotional-cash">
-                    <button class="super-oferta">
-                        <h1>SUPER OFERTA&nbsp;&nbsp;</h1>
+                <div class="promotional-cash d-flex justify-content-center align-items-center">
+                    <button class="super-oferta d-flex justify-content-center align-items-center">
+                        <h4>SUPER OFERTA&nbsp;&nbsp;</h4>
                         <i class="fa fa-diamond" aria-hidden="true"></i>
                     </button>  
                 </div>
