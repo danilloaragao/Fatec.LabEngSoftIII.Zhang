@@ -209,9 +209,7 @@ function abrirModalAcerto() {
             linha3 = `Usou ${dicasUsadas} dicas`
     }
     if (usuarioLogado) {
-        if (pontosGanhos > 0) {
-            linha4 = `Você ganhou ${pontosGanhos} pontos!`
-        }
+        linha4 = `Você ganhou ${pontosGanhos} pontos!`
     } else {
         linha4 = 'Faça o login para que seus pontos sejam contabilizados!'
     }
@@ -368,14 +366,14 @@ function telaLogin() {
 function montarBotoesModal() {
     let divBtn = document.getElementById('div-botao')
     let botao = document.createElement('button')
-    let noTexto=document.createTextNode('')
+    let noTexto = document.createTextNode('')
     botao.setAttribute('id', 'btn-voltar')
     botao.setAttribute('class', 'btn-enviar')
-    
+
     if (usuarioLogado) {
         botao.setAttribute('onclick', 'voltar()')
         noTexto = document.createTextNode('Voltar')
-    }else{
+    } else {
         botao.setAttribute('onclick', 'telaLogin()')
         noTexto = document.createTextNode('Login')
     }
