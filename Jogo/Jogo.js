@@ -133,8 +133,8 @@ function skinMovement() {
     var width = sheetWidth / 5;
     var height = sheetHeight / 5;
 
-    var maxWidth = width / 1.5;
-    var maxHeight = height / 1.5;
+    var maxWidth = width / 1.6;
+    var maxHeight = height / 1.6;
 
     var character = new Image();
 
