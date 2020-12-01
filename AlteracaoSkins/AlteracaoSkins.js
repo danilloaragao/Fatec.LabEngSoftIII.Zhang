@@ -33,6 +33,7 @@ async function getSkins() {
     fetch(`https://zhang-api.herokuapp.com/api/Jogo/Skins`, requestOptions)
         .then(response => response.text())
         .then(result => {
+        console.log(JSON.parse(result))
             showSkins(JSON.parse(result));
         })
         .then(r => {
