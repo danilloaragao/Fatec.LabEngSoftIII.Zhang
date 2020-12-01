@@ -1,4 +1,4 @@
-localStorage.setItem ("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYW1laWQiOiJTdXBlclVzZXIiLCJpc2FkbSI6IjEifQ.22d5M8Zgg-Kh0CUAKVmntMuliEegGJ-MR4opvvfiQdk")
+localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYW1laWQiOiJTdXBlclVzZXIiLCJpc2FkbSI6IjEifQ.22d5M8Zgg-Kh0CUAKVmntMuliEegGJ-MR4opvvfiQdk")
 
 const skins = [];
 const APIURL = "https://zhang-api.herokuapp.com/api/Administracao/Skins";
@@ -14,179 +14,177 @@ const changingRoom = document.getElementById('changingRoom');
 var selectedSkin;
 var drawInterval;
 
-async function getSkins (url, token){  
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "text/plain");
-    myHeaders.append("Content-Type", "application/json-patch+json");
-    myHeaders.append("token", token)
+let ida = true
+let currentFrame = 0
+let inicio = true
 
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-    };
-    
-    //load();
-    const resp = await fetch(url, requestOptions);
-    const respData = await resp.json();
-
-    showSkins(respData);
+async function getSkins() {
+    let usuario = JSON.parse(localStorage.getItem('usuario'))
+    showSkins(usuario.skins);
 }
 
-function showSkins (skins) {
-    cardBoard.innerHTML = '';   
+function showSkins(skins) {
+    cardBoard.innerHTML = '';
     skins.forEach((skin, index) => {
-        const { sprite, descricao, nivel, isVip} = skin;
+        const { id, sprite, descricao, nivel, isVip, ativo } = skin;
         const skinEl = document.createElement('div');
 
-        skinEl.id = "skin" + index;
+        skinEl.id = "skin" + skin.id;
         skinEl.addEventListener("click", (e) => {
-            selectSkin(skinEl.id);
+            selectSkin(skin);
         });
 
         let tagVip = "";
 
-        if(isVip){
+        if (isVip) {
             tagVip = '<i class="fa fa-star chequed"></i>';
         }
 
         skinEl.classList.add('skin');
+
+        if(ativo)
+        skinEl.classList.add('skinSelected')
+
+        // <img src="${IMGPATH + sprite}" alt="${descricao}">
         skinEl.innerHTML = `
-        <img src="${IMGPATH + sprite}" alt="${descricao}">
+        <canvas id="canvas${id}" class="canvas-thumbnail"></canvas>
         <div class="skin-info">
-            <h5>${descricao}</h5>
+            <h5 ${ativo ? 'class="skin-ativa"' : ''}>${descricao}</h5> ${ativo ? '<i class="fa fa-check-circle"></i>' : ''}
             ${tagVip}
         </div>
         `;
         cardBoard.appendChild(skinEl);
-    });   
+        // skinThumbnail(IMGPATH + sprite, "canvas" + id)
+    });
 }
+criarCanvas()
+getSkins();
+selectSkin(JSON.parse(localStorage.getItem('usuario')).skins.find(s => !!s.ativo))
 
-getSkins(APIURL, localStorage.getItem("token"));
-
-function selectSkin () {
-
-};
-
-/*
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const searchTerm = search.value;
-
-    if(searchTerm) {
-        getSkins(SEARCHAPI + searchTerm, localStorage.getItem("token") )
-        search.value = '';
-    }
-
-});
-*/
-
-function selectSkin (skinId) {
-    const skin = document.getElementById(skinId);
-    var path, cols, rows, sheetWidth, sheetHeight;
-
-    if(selectedSkin != undefined){
+function selectSkin(skin) {
+    const skinEl = document.getElementById(`skin${skin.id}`);
+    if (selectedSkin != undefined) {
         selectedSkin.classList.remove('skinSelected');
     }
-    selectedSkin = skin;
-    skin.classList.add('skinSelected');
+    selectedSkin = skinEl;
+    skinEl.classList.add('skinSelected');
 
-    if(Math.floor(Math.random() * 2) == 1) {
-        path = "character.png";
-        cols = 8;
-        rows = 2;
-        sheetWidth = 864;
-        sheetHeight = 280;
-    }
-    else if ((Math.floor(Math.random() * 2) == 1)) {
-        path = "megamen.png";
-        rows = 2;
-        cols = 5;
-        sheetWidth = 864;
-        sheetHeight = 346;
-    }
-    else {
-        path = "normalguy.png";
-        rows = 4;
-        cols = 4;
-        sheetWidth = 800;
-        sheetHeight = 1198;
+    skinMovement(`data:image/png;base64, ${skin.sprite}`);
+
+    if(inicio)
+        inicio = false
+    else{
+        var myHeaders = new Headers()
+    myHeaders.append("Accept", "text/plain")
+    myHeaders.append("Content-Type", "application/json-patch+json")
+    myHeaders.append("token", JSON.parse(localStorage.getItem('usuario')).token)
+
+    var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        redirect: 'follow'
     }
 
-    skinMovement(path, Math.floor(Math.random() * 2), cols, rows, sheetWidth, sheetHeight);
+    fetch(`https://zhang-api.herokuapp.com/api/Jogo/Skins?idSkin=${skin.id}`, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            localStorage.setItem('usuario', result)
+            alert('Skin alterada!')
+        })
+    }
 };
 
-
-
-
-function skinMovement (src, movement, cols, rows, sheetWidth, sheetHeight) {
+function skinMovement(path) {
     var srcX;
     var srcy;
-    //var sheetWidth = 864;
-    //var sheetHeight = 280;
+    var sheetWidth = 3000;
+    var sheetHeight = 5750;
 
-    //var cols = 8;
-    //var rows = 2;
+    var width = sheetWidth / 5;
+    var height = sheetHeight / 5;
 
-    var width = sheetWidth / cols;
-    var height = sheetHeight / rows;
-
-    var maxWidth = 250;
-    var maxHeight = 150;    
-
-    var currentFrame = 0;
+    var maxWidth = width / 1;
+    var maxHeight = height / 1;
 
     var character = new Image();
 
-    character.src = src;
+    character.src = path;
 
     var canvas = document.getElementById('canvas');
-    var canvasSize = canvas.getBoundingClientRect();
-
     canvas.style.width = maxWidth;
     canvas.style.height = maxHeight;
 
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, maxWidth, maxHeight);
 
-    function updateFrame () {
-        currentFrame = ++currentFrame % cols;
+    function updateFrame() {
+        if (ida) {
+            currentFrame++
+            if (currentFrame >= 4)
+                ida = false
+        } else {
+            currentFrame--
+            if (currentFrame <= 0)
+                ida = true
+        }
         srcX = currentFrame * width;
-        srcy = movement * height;
+        srcy = 0 * height;
 
         ctx.clearRect(0, 0, maxWidth, maxHeight);
     };
 
-    function drawImage () {
+    function drawImage() {
         updateFrame();
         ctx.drawImage(character, srcX, srcy, width, height, 0, 0, maxWidth, maxHeight);
     };
 
     clearInterval(drawInterval);
-
+    drawImage()
     drawInterval = setInterval((e) => {
         drawImage();
-    }, 100);
+    }, 500);
 };
 
- function filterSkins (e) {
-     let color;
-     console.log(e);
-     switch (e.id) {
-         case '1to20Filter':
-             color = "green";
-             break;
-        case '21to50Filter':
-            color = "orange";
-            break;        
-     }
+// function filterSkins(e) {
+//     let color;
+//     switch (e.id) {
+//         case '1to20Filter':
+//             color = "green";
+//             break;
+//         case '21to50Filter':
+//             color = "orange";
+//             break;
+//     }
 
-     const filter = document.getElementById(e.id);
-     filter.style.color = color;
-};
+//     const filter = document.getElementById(e.id);
+//     filter.style.color = color;
+// };
 
 
-filterNav.addEventListener ('click', e => {
-    filterSkins(e);
-});
+// filterNav.addEventListener('click', e => {
+//     filterSkins(e);
+// });
+
+function criarCanvas() {
+    let w = 600
+    let h = 1150
+    var ctx = document.createElement("canvas").getContext("2d"),
+        dpr = window.devicePixelRatio || 1,
+        bsr = ctx.webkitBackingStorePixelRatio ||
+            ctx.mozBackingStorePixelRatio ||
+            ctx.msBackingStorePixelRatio ||
+            ctx.oBackingStorePixelRatio ||
+            ctx.backingStorePixelRatio || 1;
+
+    let ratio = dpr / bsr;
+
+    var can = document.createElement("canvas");
+    can.width = w * ratio;
+    can.height = h * ratio;
+    can.style.width = w + "px";
+    can.style.height = h + "px";
+    can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    can.setAttribute('id', 'canvas')
+
+    document.getElementById('div-canvas').appendChild(can)
+}

@@ -114,7 +114,7 @@ function clickLetra(idLetra) {
 
 function mostrarDica(numeroDica) {
     let dica = document.getElementById(`dica${numeroDica}`)
-    dica.innerText = palavraJogo[`dica${numeroDica}`]
+    dica.innerText = `Dica: ${palavraJogo[`dica${numeroDica}`]}`
     dica.removeAttribute('onclick')
 
     let proximaDica = document.getElementById(`dica${numeroDica + 1}`)
@@ -133,8 +133,8 @@ function skinMovement() {
     var width = sheetWidth / 5;
     var height = sheetHeight / 5;
 
-    var maxWidth = width / 1.5;
-    var maxHeight = height / 1.5;
+    var maxWidth = width / 1.6;
+    var maxHeight = height / 1.6;
 
     var character = new Image();
 
@@ -209,9 +209,7 @@ function abrirModalAcerto() {
             linha3 = `Usou ${dicasUsadas} dicas`
     }
     if (usuarioLogado) {
-        if (pontosGanhos > 0) {
-            linha4 = `Você ganhou ${pontosGanhos} pontos!`
-        }
+        linha4 = `Você ganhou ${pontosGanhos} pontos!`
     } else {
         linha4 = 'Faça o login para que seus pontos sejam contabilizados!'
     }
@@ -368,14 +366,14 @@ function telaLogin() {
 function montarBotoesModal() {
     let divBtn = document.getElementById('div-botao')
     let botao = document.createElement('button')
-    let noTexto=document.createTextNode('')
+    let noTexto = document.createTextNode('')
     botao.setAttribute('id', 'btn-voltar')
     botao.setAttribute('class', 'btn-enviar')
-    
+
     if (usuarioLogado) {
         botao.setAttribute('onclick', 'voltar()')
         noTexto = document.createTextNode('Voltar')
-    }else{
+    } else {
         botao.setAttribute('onclick', 'telaLogin()')
         noTexto = document.createTextNode('Login')
     }

@@ -49,6 +49,7 @@ function login(){
 
 function iniciar(){
     let dadosLogin = JSON.parse(localStorage.getItem('dadosLogin'))
+    localStorage.removeItem('usuario')
     if (dadosLogin && dadosLogin.lembrar){
         document.getElementById('nome').value = dadosLogin.login;
         document.getElementById('senha').value = dadosLogin.senha;
