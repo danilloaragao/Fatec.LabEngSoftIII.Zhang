@@ -19,8 +19,25 @@ let currentFrame = 0
 let inicio = true
 
 async function getSkins() {
-    let usuario = JSON.parse(localStorage.getItem('usuario'))
-    showSkins(usuario.skins);
+    var myHeaders = new Headers()
+    myHeaders.append("Accept", "text/plain")
+    myHeaders.append("Content-Type", "application/json-patch+json")
+    myHeaders.append("token", JSON.parse(localStorage.getItem('usuario')).token)
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    }
+
+    fetch(`https://zhang-api.herokuapp.com/api/Jogo/Skins`, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            showSkins(JSON.parse(result));
+        })
+        .then(r => {
+            selectSkin(JSON.parse(localStorage.getItem('usuario')).skins.find(s => !!s.ativo))
+        })
 }
 
 function showSkins(skins) {
@@ -42,8 +59,8 @@ function showSkins(skins) {
 
         skinEl.classList.add('skin');
 
-        if(ativo)
-        skinEl.classList.add('skinSelected')
+        if (ativo)
+            skinEl.classList.add('skinSelected')
 
         // <img src="${IMGPATH + sprite}" alt="${descricao}">
         skinEl.innerHTML = `
@@ -55,13 +72,12 @@ function showSkins(skins) {
         `;
         cardBoard.appendChild(skinEl);
         criarCanvas('div-canvas', `canvas${id}`, 30, 65)
-        document.getElementById(`canvas${id}`).setAttribute("class","canvas-thumbnail")
+        document.getElementById(`canvas${id}`).setAttribute("class", "canvas-thumbnail")
         skinThumbnail(IMGPATH + sprite, `canvas${id}`)
     });
 }
 criarCanvas('div-canvas', 'canvas', 600, 1150)
 getSkins();
-selectSkin(JSON.parse(localStorage.getItem('usuario')).skins.find(s => !!s.ativo))
 
 function selectSkin(skin) {
     const skinEl = document.getElementById(`skin${skin.id}`);
@@ -73,26 +89,26 @@ function selectSkin(skin) {
 
     skinMovement(`data:image/png;base64, ${skin.sprite}`);
 
-    if(inicio)
+    if (inicio)
         inicio = false
-    else{
+    else {
         var myHeaders = new Headers()
-    myHeaders.append("Accept", "text/plain")
-    myHeaders.append("Content-Type", "application/json-patch+json")
-    myHeaders.append("token", JSON.parse(localStorage.getItem('usuario')).token)
+        myHeaders.append("Accept", "text/plain")
+        myHeaders.append("Content-Type", "application/json-patch+json")
+        myHeaders.append("token", JSON.parse(localStorage.getItem('usuario')).token)
 
-    var requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        redirect: 'follow'
-    }
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            redirect: 'follow'
+        }
 
-    fetch(`https://zhang-api.herokuapp.com/api/Jogo/Skins?idSkin=${skin.id}`, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            localStorage.setItem('usuario', result)
-            alert('Skin alterada!')
-        })
+        fetch(`https://zhang-api.herokuapp.com/api/Jogo/Skins?idSkin=${skin.id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                localStorage.setItem('usuario', result)
+                alert('Skin alterada!')
+            })
     }
 };
 
@@ -191,9 +207,9 @@ function criarCanvas(destino, idCanvas, w, h) {
 
 // function skinThumbnail(path, idCanvas){
 //     var character = new Image();
-    
+
 //     character.src = path;
-    
+
 //     var canvas = document.getElementById(idCanvas);
 //     canvas.style.width = 150;
 //     canvas.style.height = 325;
