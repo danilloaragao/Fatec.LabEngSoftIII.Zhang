@@ -6,14 +6,15 @@ const APIURLBuyCash = "https://zhang-api.herokuapp.com/api/Jogo/CompraCash";
 const APIURLBuySkin = "https://zhang-api.herokuapp.com/api/Jogo/CompraSkin";
 const IMGPATH = "data:image/png;base64,";
 const SEARCHAPI = "https://zhang-api.herokuapp.com/api/Administracao/SkinsPorDescricao?descricaoSkin=";
-const user = JSON.parse(localStorage.getItem("usuario"));
+let user = JSON.parse(localStorage.getItem("usuario"));
 const main = document.getElementById('main');
 const skinsSpace = document.getElementById('skins-space')
 const btn20 = document.getElementById('btn20');
 const btn40 = document.getElementById('btn40');
 const btn100 = document.getElementById('btn100');
 const btn300 = document.getElementById('btn300');
-let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "";
+let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false, positiveFoundings = false;
+
 
 var selectedSkin;
 var drawInterval;
@@ -42,67 +43,81 @@ function showSkins (skins) {
     clearInterval(drawInterval);
     skinsSpace.innerHTML = '';   
     skins.forEach((skin, index) => {
-        if (count < 4) {
-            allSkins.push(skin);
-            const { sprite, descricao, nivel, isVip, valorCash} = skin;
-            const skinEl = document.createElement('div');
-            const canvasEl = document.createElement('canvas');
-
-            skinEl.id = "skin" + index;
-            skinEl.className = "skins";
-
-            let tagVip = "";
-            let tagBtn = "";
-
+        if (count < 4) {            
+            const {isVip, valorCash} = skin;
             if(isVip){
+                
+                let tagVip = "";
                 tagVip = '<i class="fa fa-star chequed"></i>';
-            }
 
-            if(purchasedSkin(skin.id) == true){                    
-                tagBtn = '<i class="fa fa-check"> Comprado </i>'
-            }
-            else{
-                tagBtn = `<button id="btn${skinEl.id}" class="comprar-skin d-flex justify-content-center align-items-center">
-                            Comprar
-                        </button>`
-            }
+                allSkins.push(skin);
+                const skinEl = document.createElement('div');
+                const canvasEl = document.createElement('canvas');
 
-            skinEl.classList.add('skin');
-            skinEl.innerHTML = `
-            <div class="skin-info">
-                <div class="info-valor">
-                    <h4>Valor:&nbsp;</h4>
-                    <h5>${valorCash}</h5>
+                skinEl.id = "skin" + index;
+                skinEl.className = "skins";
+
+                let tagBtn = "";
+
+                purchasedSkin(skin.id)
+                if( purchased == true){                    
+                    tagBtn = '<i class="fa fa-check"> Comprado </i>'
+                }
+                else{
+                    tagBtn = `<button id="btnskin${count}" class="comprar-skin d-flex justify-content-center align-items-center">
+                                Comprar
+                            </button>`
+                }
+
+                skinEl.classList.add('skin');
+                skinEl.innerHTML = `
+                <div class="skin-info">
+                    <div class="info-valor">
+                        <h4>Valor:&nbsp;</h4>
+                        <h5>${valorCash}</h5>
+                    </div>
+                    <div class="info-vip">
+                        <h4>VIP:&nbsp;</h4>
+                        ${tagVip}
+                    </div>
+                    ${tagBtn}
                 </div>
-                <div class="info-vip">
-                    <h4>VIP:&nbsp;</h4>
-                    ${tagVip}
-                </div>
-                ${tagBtn}
-            </div>
-            `;
+                `;
 
-            canvasEl.id = "canvas" + index;
-            canvasEl.className = "canvas";
-            skinEl.append(canvasEl);
-            skinsSpace.appendChild(skinEl);
-            skinMovement (`data:image/png;base64, ${skin.sprite}`, 0, canvasEl.id)
-            count ++;
+                canvasEl.id = "canvas" + index;
+                canvasEl.className = "canvas";
+                skinEl.append(canvasEl);
+                skinsSpace.appendChild(skinEl);
+                skinMovement (`data:image/png;base64, ${skin.sprite}`, 0, canvasEl.id)
+                count ++;
+            }
         }
     }); 
     btnSkin0 = document.getElementById('btnskin0');
     btnSkin1 = document.getElementById('btnskin1');
     btnSkin2 = document.getElementById('btnskin2');
     btnSkin3 = document.getElementById('btnskin3');
-    /*
-    if(allSkins[0] != undefined)
-        btnSkin0.onclick = comprarSkin(allSkins[0].id);
-    if(allSkins[1] != undefined)
-        btnSkin1.onclick = comprarSkin(allSkins[1].id);
-    if(allSkins[2] != undefined)
-        btnSkin2.onclick = comprarSkin(allSkins[2].id);
-    if(allSkins[3] != undefined)
-        btnSkin3.onclick = comprarSkin(allSkins[3].id);*/
+    
+    if(allSkins[0] != undefined && btnSkin0 != undefined){
+        btnSkin0.onclick = function() {
+            comprarSkin(allSkins[0].id);
+        }
+    }        
+    if(allSkins[1] != undefined && btnSkin1 != undefined) {
+        btnSkin1.onclick = function() {
+            comprarSkin(allSkins[1].id);
+        }
+    }
+    if(allSkins[2] != undefined && btnSkin2 != undefined) {
+        btnSkin2.onclick = function() {
+            comprarSkin(allSkins[2].id);
+        }
+    }
+    if(allSkins[3] != undefined && btnSkin3 != undefined) {
+        btnSkin3.onclick = function() { 
+            comprarSkin(allSkins[3].id);
+        }        
+    }
 }
 
 getSkins(APIURLSkins, localStorage.getItem("token"));
@@ -234,34 +249,67 @@ btn300.onclick = function() {
 };
 
 function purchasedSkin (skinID) {
+    purchased = false;
     user.skins.forEach((skin, index) => {
         if(skin.id == skinID) {
-            return true;
+            purchased = true;
         }
-        return false;
-    });
+    });    
 }
-/*
-async function buySkin(url, token, skinID) {
-    var myHeaders = new Headers();
+
+async function buySkin(url, token, IdSkin) {
+    var myHeaders = new Headers();    
+    var skin = new Object();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
-    myHeaders.append("token", token)
+    myHeaders.append("token", token);
+    myHeaders.append("origin", "https://zhang-api.herokuapp.com");
+
+    skin = {
+        "IdSkin" : IdSkin
+    };
 
     var requestOptions = {
     method: 'POST',
     headers: myHeaders,
-    redirect: 'follow',
-    body: skinID    
+    redirect: 'follow'
     };
+
     //load();
-    const resp = await fetch(url, requestOptions);
+    const resp = await fetch(url+`?idSkin=${IdSkin}`, requestOptions);
     const respData = await resp.json();
-    //user.skins.push(respData);
-    //localStorage.setItem("usuario", JSON.stringify(user));
+    user = respData;
+    localStorage.setItem("usuario", JSON.stringify(respData));
 }
 
 function comprarSkin(skinID) {
-    buySkin(APIURLBuySkin, user.token, skinID);
+    validFoundings(skinID);
+    if(positiveFoundings == true) {
+        buySkin(APIURLBuySkin, user.token, skinID);
+        getSkins(APIURLSkins, localStorage.getItem("token"));
+        updateFoundings(skinID);        
+    }
 }
-*/
+
+function validFoundings(skinID) {
+    let skinObj = allSkins.find(x => x.id == skinID);
+    let saldo = user.cash - skinObj.valorCash;
+    if(saldo < 0) {
+        positiveFoundings = false;
+        alert(`Saldo insuficiente para compra de skin!\nMoedas necessárias: ${Math.abs(saldo)}\nCompre moedas ou ganhe durante as partidadas!`);
+    }
+    else {
+        positiveFoundings = true;
+    }
+    skinObj = "";
+}
+
+function updateFoundings (skinID) {
+    let skinObj = allSkins.find(x => x.id == skinID);
+    user.cash -= skinObj.valorCash;
+    positiveFoundings = true;
+    getSaldo();
+}
+
+
+
