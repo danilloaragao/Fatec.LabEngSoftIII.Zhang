@@ -2,6 +2,7 @@ localStorage.setItem ("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWV
 
 const allSkins = [];
 const APIURLSkins = "https://zhang-api.herokuapp.com/api/Administracao/Skins";
+const APIURLSkinsUser = "https://zhang-api.herokuapp.com/api/Jogo/Skins";
 const APIURLBuyCash = "https://zhang-api.herokuapp.com/api/Jogo/CompraCash";
 const APIURLBuySkin = "https://zhang-api.herokuapp.com/api/Jogo/CompraSkin";
 const IMGPATH = "data:image/png;base64,";
@@ -13,7 +14,7 @@ const btn20 = document.getElementById('btn20');
 const btn40 = document.getElementById('btn40');
 const btn100 = document.getElementById('btn100');
 const btn300 = document.getElementById('btn300');
-let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false, positiveFoundings = false;
+let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false, positiveFoundings = false, userSkins = [];
 
 
 var selectedSkin;
@@ -36,6 +37,25 @@ async function getSkins (url, token){
     const respData = await resp.json();
 
     showSkins(respData);
+}
+
+async function getSkinsUser (url, token){  
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "text/plain");
+    myHeaders.append("Content-Type", "application/json-patch+json");
+    myHeaders.append("token", token)
+
+    var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+    
+    //load();
+    const resp = await fetch(url, requestOptions);
+    const respData = await resp.json();
+
+    userSkins = (respData);
 }
 
 function showSkins (skins) {    
@@ -120,7 +140,10 @@ function showSkins (skins) {
     }
 }
 
+
+getSkinsUser(APIURLSkinsUser, user.token);
 getSkins(APIURLSkins, localStorage.getItem("token"));
+
 /*
 function configSkin (skinId, canvasId) {
     const skin = document.getElementById(skinId);
@@ -250,7 +273,7 @@ btn300.onclick = function() {
 
 function purchasedSkin (skinID) {
     purchased = false;
-    user.skins.forEach((skin, index) => {
+    userSkins.forEach((skin) => {
         if(skin.id == skinID) {
             purchased = true;
         }
@@ -286,6 +309,7 @@ function comprarSkin(skinID) {
     validFoundings(skinID);
     if(positiveFoundings == true) {
         buySkin(APIURLBuySkin, user.token, skinID);
+        getSkinsUser(APIURLSkinsUser, user.token);
         getSkins(APIURLSkins, localStorage.getItem("token"));
         updateFoundings(skinID);        
     }
