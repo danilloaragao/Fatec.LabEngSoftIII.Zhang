@@ -13,7 +13,8 @@ const btn20 = document.getElementById('btn20');
 const btn40 = document.getElementById('btn40');
 const btn100 = document.getElementById('btn100');
 const btn300 = document.getElementById('btn300');
-let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "";
+let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false;
+
 
 var selectedSkin;
 var drawInterval;
@@ -57,8 +58,8 @@ function showSkins (skins) {
             if(isVip){
                 tagVip = '<i class="fa fa-star chequed"></i>';
             }
-
-            if(purchasedSkin(skin.id) == true){                    
+            purchasedSkin(skin.id)
+            if( purchased == true){                    
                 tagBtn = '<i class="fa fa-check"> Comprado </i>'
             }
             else{
@@ -94,15 +95,27 @@ function showSkins (skins) {
     btnSkin1 = document.getElementById('btnskin1');
     btnSkin2 = document.getElementById('btnskin2');
     btnSkin3 = document.getElementById('btnskin3');
-    /*
-    if(allSkins[0] != undefined)
-        btnSkin0.onclick = comprarSkin(allSkins[0].id);
-    if(allSkins[1] != undefined)
-        btnSkin1.onclick = comprarSkin(allSkins[1].id);
-    if(allSkins[2] != undefined)
-        btnSkin2.onclick = comprarSkin(allSkins[2].id);
-    if(allSkins[3] != undefined)
-        btnSkin3.onclick = comprarSkin(allSkins[3].id);*/
+    
+    if(allSkins[0] != undefined && btnSkin0 != undefined){
+        btnSkin0.onclick = function() {
+            comprarSkin(allSkins[0].id);
+        }
+    }        
+    if(allSkins[1] != undefined && btnSkin1 != undefined) {
+        btnSkin1.onclick = function() {
+            comprarSkin(allSkins[1].id);
+        }
+    }
+    if(allSkins[2] != undefined && btnSkin2 != undefined) {
+        btnSkin2.onclick = function() {
+            comprarSkin(allSkins[2].id);
+        }
+    }
+    if(allSkins[3] != undefined && btnSkin3 != undefined) {
+        btnSkin3.onclick = function() { 
+            comprarSkin(allSkins[3].id);
+        }        
+    }
 }
 
 getSkins(APIURLSkins, localStorage.getItem("token"));
@@ -234,35 +247,42 @@ btn300.onclick = function() {
 };
 
 function purchasedSkin (skinID) {
+    purchased = false;
     user.skins.forEach((skin, index) => {
         if(skin.id == skinID) {
-            return true;
+            purchased = true;
         }
-        return false;
-    });
+    });    
 }
-/*
-async function buySkin(url, token, skinID) {
-    var myHeaders = new Headers();
+
+async function buySkin(url, token, IdSkin) {
+    var myHeaders = new Headers();    
+    var skin = new Object();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
-    myHeaders.append("token", token)
+    myHeaders.append("token", token);
+    myHeaders.append("origin", "https://zhang-api.herokuapp.com");
+
+    skin = {
+        "IdSkin" : IdSkin
+    };
 
     var requestOptions = {
     method: 'POST',
     headers: myHeaders,
-    redirect: 'follow',
-    body: skinID    
+    redirect: 'follow'
     };
+
     //load();
-    const resp = await fetch(url, requestOptions);
+    const resp = await fetch(url+`?idSkin=${IdSkin}`, requestOptions);
     const respData = await resp.json();
-    //console.log(respData);
-    //user.skins.push(respData);
-    //localStorage.setItem("usuario", JSON.stringify(user));
+    console.log(respData);
+    user.skins.push(respData);
+    localStorage.setItem("usuario", JSON.stringify(user));
 }
 
 function comprarSkin(skinID) {
     buySkin(APIURLBuySkin, user.token, skinID);
+    getSkins(APIURLSkins, localStorage.getItem("token"));
 }
-*/
+
