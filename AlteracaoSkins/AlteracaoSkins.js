@@ -54,10 +54,12 @@ function showSkins(skins) {
         </div>
         `;
         cardBoard.appendChild(skinEl);
-        // skinThumbnail(IMGPATH + sprite, "canvas" + id)
+        criarCanvas('div-canvas', `canvas${id}`, 30, 65)
+        document.getElementById(`canvas${id}`).setAttribute("class","canvas-thumbnail")
+        skinThumbnail(IMGPATH + sprite, `canvas${id}`)
     });
 }
-criarCanvas()
+criarCanvas('div-canvas', 'canvas', 600, 1150)
 getSkins();
 selectSkin(JSON.parse(localStorage.getItem('usuario')).skins.find(s => !!s.ativo))
 
@@ -165,9 +167,7 @@ function skinMovement(path) {
 //     filterSkins(e);
 // });
 
-function criarCanvas() {
-    let w = 600
-    let h = 1150
+function criarCanvas(destino, idCanvas, w, h) {
     var ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
         bsr = ctx.webkitBackingStorePixelRatio ||
@@ -184,7 +184,72 @@ function criarCanvas() {
     can.style.width = w + "px";
     can.style.height = h + "px";
     can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
-    can.setAttribute('id', 'canvas')
+    can.setAttribute('id', idCanvas)
 
-    document.getElementById('div-canvas').appendChild(can)
+    document.getElementById(destino).appendChild(can)
 }
+
+// function skinThumbnail(path, idCanvas){
+//     var character = new Image();
+    
+//     character.src = path;
+    
+//     var canvas = document.getElementById(idCanvas);
+//     canvas.style.width = 150;
+//     canvas.style.height = 325;
+//     var ctx = canvas.getContext('2d');
+//     console.log(ctx)
+//     ctx.clearRect(0, 0, 300, 650);
+//     ctx.drawImage(character, 1350, 200, 300, 650, 0, 0, 60, 115);
+// }
+
+function skinThumbnail(path, idCanvas) {
+    var srcX;
+    var srcy;
+    var sheetWidth = 3000;
+    var sheetHeight = 5750;
+
+    var width = sheetWidth / 5;
+    var height = sheetHeight / 5;
+
+    var maxWidth = width / 2;
+    var maxHeight = height / 7;
+
+    var character = new Image();
+
+    character.src = path;
+
+    var canvas = document.getElementById(idCanvas);
+    canvas.style.width = maxWidth;
+    canvas.style.height = maxHeight;
+
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, maxWidth, maxHeight);
+
+    function updateFrame() {
+        if (ida) {
+            currentFrame++
+            if (currentFrame >= 4)
+                ida = false
+        } else {
+            currentFrame--
+            if (currentFrame <= 0)
+                ida = true
+        }
+        srcX = currentFrame * width;
+        srcy = 0 * height;
+
+        ctx.clearRect(0, 0, maxWidth, maxHeight);
+    };
+
+    function drawImage() {
+        updateFrame();
+        ctx.drawImage(character, srcX, srcy, width, height, 0, 0, maxWidth, maxHeight);
+    };
+
+    clearInterval(drawInterval);
+    drawImage()
+    drawInterval = setInterval((e) => {
+        drawImage();
+    }, 500);
+};
