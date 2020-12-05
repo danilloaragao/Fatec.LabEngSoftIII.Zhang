@@ -8,38 +8,45 @@
     <link rel="stylesheet" href="./Cadastro.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
 </head>
 
 <body>
     <div id="main-container">
         <h1> CADASTRE-SE PARA ACESSAR O JOGO</h1>
         <form id="register-form">
-            <div class="full-box"> 
+            <div class="full-box">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu e-mail"  data-required data-email-validate>
+                <input type="email" name="email" id="email" placeholder="Digite seu e-mail" data-required
+                    data-email-validate>
             </div>
             <div class="full-box">
                 <label for="name">Usuário</label>
-                <input type="text" name="name" id="name" placeholder="Digite seu nome" data-max-length="25" data-only-letters>
+                <input type="text" name="name" id="name" placeholder="Digite seu nome" data-max-length="25"
+                    data-only-letters>
             </div>
             <div class="half-box spacing">
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite a sua senha" data-min-length="6" data-required data-password-validate>
+                <input type="password" name="password" id="password" placeholder="Digite a sua senha"
+                    data-min-length="6" data-required data-password-validate>
             </div>
             <div class="half-box spacing">
                 <label for="passconfirmation">Confirmação de Senha</label>
-                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha" data-min-length="6" data-equal="password" data-required>
+                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha"
+                    data-min-length="6" data-equal="password" data-required>
             </div>
             <div class="full-box">
                 <input type="submit" id="btn-submit" value="Cadastrar">
             </div>
         </form>
     </div>
-    <p class="error-validation template"></p>  
+    <p class="error-validation template"></p>
 
-
+    <div class="loading" id="div-loading">
+        <img class="img-loading" src='./../assets/Loading.gif' alt="Loading">
+    </div>
 
     <script type="text/javascript" src="./Cadastro.js"></script>
 </body>
+
 </html>

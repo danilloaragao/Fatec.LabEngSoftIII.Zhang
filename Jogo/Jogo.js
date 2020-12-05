@@ -11,7 +11,10 @@ let jumpScare = './../assets/jumpScare.png'
 let pontosGanhos
 let usuarioLogado = !!localStorage.getItem("usuario")
 
+pararLoading()
+
 function iniciarTelaJogo() {
+    inicarLoading()
     criarCanvas()
     montarBotoesModal()
     pontosGanhos = 0
@@ -78,7 +81,8 @@ function iniciarTelaJogo() {
             })
 
             skinMovement()
-        })
+        }).then(() => pararLoading())
+        .catch(() => pararLoading())
 }
 
 function clickLetra(idLetra) {
@@ -261,6 +265,7 @@ function fecharModal() {
 }
 
 function apiAcertoPalavra() {
+    inicarLoading()
     let token = ''
     let usuario
 
@@ -303,7 +308,8 @@ function apiAcertoPalavra() {
         })
         .then(resul =>
             abrirModalAcerto()
-        )
+        ).then(() => pararLoading())
+        .catch(() => pararLoading())
 }
 
 function jogarNovamente() {
@@ -379,4 +385,14 @@ function montarBotoesModal() {
     }
     botao.appendChild(noTexto)
     divBtn.appendChild(botao)
+}
+
+function inicarLoading() {
+    document.getElementById('div-loading').style.display = 'flex';
+    console.log('ini')
+}
+
+function pararLoading() {
+    document.getElementById('div-loading').style.display = 'none';
+    console.log('fim')
 }

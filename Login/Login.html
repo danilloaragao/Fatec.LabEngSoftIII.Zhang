@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhang - Login</title>
-    <link rel="stylesheet" href="./Login.css">
+    <link rel="stylesheet" href="./Login.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -17,9 +17,9 @@
                 <div class="form-login">
                     <div class="titulo-card">ENTRAR NA MINHA CONTA</div>
                     <label for="email">Login</label>
-                    <input id="nome"  placeholder="Insira seu Login ou E-mail" type="text">
+                    <input id="nome" placeholder="Insira seu Login" type="text">
                     <label for="senha">Senha</label>
-                    <input id="senha"  placeholder="Insira sua Senha" type="password">
+                    <input id="senha" placeholder="Insira sua Senha" type="password">
                     <div class="esqueci">
                         <input type="checkbox" value="remember-me" id="lembrar"> Lembre-se de mim
                         <a href="./../RecuperacaoSenha/RecuperacaoSenha.html" class="forgot-password">
@@ -41,6 +41,9 @@
                 </a> de graça.
             </div>
         </div>
+    </div>
+    <div class="loading" id="div-loading">
+        <img class="img-loading" src='./../assets/Loading.gif' alt="Loading">
     </div>
     <script type="text/javascript" src="./Login.js"></script>
 </body>

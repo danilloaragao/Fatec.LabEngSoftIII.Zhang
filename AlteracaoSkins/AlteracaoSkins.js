@@ -17,8 +17,9 @@ var drawInterval;
 let ida = true
 let currentFrame = 0
 let inicio = true
-
+pararLoading()
 async function getSkins() {
+    inicarLoading()
     var myHeaders = new Headers()
     myHeaders.append("Accept", "text/plain")
     myHeaders.append("Content-Type", "application/json-patch+json")
@@ -38,9 +39,12 @@ async function getSkins() {
         .then(r => {
             selectSkin(JSON.parse(localStorage.getItem('usuario')).skins.find(s => !!s.ativo))
         })
+        .then(() => pararLoading())
+        .catch(() => pararLoading())
 }
 
 function showSkins(skins) {
+    inicarLoading()
     cardBoard.innerHTML = '';
     skins.forEach((skin, index) => {
         const { id, sprite, descricao, nivel, isVip, ativo } = skin;
@@ -74,12 +78,14 @@ function showSkins(skins) {
         criarCanvas('div-canvas', `canvas${id}`, 30, 65)
         document.getElementById(`canvas${id}`).setAttribute("class", "canvas-thumbnail")
         skinThumbnail(IMGPATH + sprite, `canvas${id}`)
-    });
+    })
+    pararLoading()
 }
 criarCanvas('div-canvas', 'canvas', 600, 1150)
 getSkins();
 
 function selectSkin(skin) {
+    inicarLoading()
     const skinEl = document.getElementById(`skin${skin.id}`);
     if (selectedSkin != undefined) {
         selectedSkin.classList.remove('skinSelected');
@@ -89,8 +95,10 @@ function selectSkin(skin) {
 
     skinMovement(`data:image/png;base64, ${skin.sprite}`);
 
-    if (inicio)
+    if (inicio) {
         inicio = false
+        pararLoading()
+    }
     else {
         var myHeaders = new Headers()
         myHeaders.append("Accept", "text/plain")
@@ -109,6 +117,8 @@ function selectSkin(skin) {
                 localStorage.setItem('usuario', result)
                 alert('Skin alterada!')
             })
+            .then(() => pararLoading())
+            .catch(() => pararLoading())
     }
 };
 
@@ -184,6 +194,7 @@ function skinMovement(path) {
 // });
 
 function criarCanvas(destino, idCanvas, w, h) {
+    inicarLoading()
     var ctx = document.createElement("canvas").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
         bsr = ctx.webkitBackingStorePixelRatio ||
@@ -203,6 +214,7 @@ function criarCanvas(destino, idCanvas, w, h) {
     can.setAttribute('id', idCanvas)
 
     document.getElementById(destino).appendChild(can)
+    pararLoading()
 }
 
 // function skinThumbnail(path, idCanvas){
@@ -269,3 +281,13 @@ function skinThumbnail(path, idCanvas) {
         drawImage();
     }, 500);
 };
+
+function inicarLoading() {
+    document.getElementById('div-loading').style.display = 'flex';
+    console.log('ini')
+}
+
+function pararLoading() {
+    document.getElementById('div-loading').style.display = 'none';
+    console.log('fim')
+}

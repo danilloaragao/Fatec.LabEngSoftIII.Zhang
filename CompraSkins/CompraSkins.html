@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-    content="widith=device-width,
+    <meta name="viewport" content="widith=device-width,
     initial-sacale=1.0">
     <title>Zhang - Compra de Skins</title>
     <link rel="stylesheet" href="./CompraSkins.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <link type="text/css" href="./../bootstrap-4.5.3-dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
     <script type="text/javascript" src="./../Shared/Shared.js"></script>
     <link type="text/css" href="./../Shared/Shared.css" rel="stylesheet" />
-    
-  </head>
-  <body>
+
+</head>
+
+<body>
     <script>areaLogada()</script>
     <div id="menu"></div>
     <div id="main" class="container-skin d-flex flex-wrap justify-content-center align-items-start">
@@ -29,54 +31,58 @@
             </section>
         </div>
         <section class="botton-info container-botton d-flex justify-content-center align-items-center">
-            <div id="skins-space" class="skins d-flex flex-wrap justify-content-center align-items-center">      
+            <div id="skins-space" class="skins d-flex flex-wrap justify-content-center align-items-center">
             </div>
             <div class="cashs container-cash d-flex flex-wrap justify-content-center align-items-center">
                 <div class="cash mediumcash">
-                    <img src="./MediumCash.png" alt="">
+                    <img src="./../assets/MediumCash.png" alt="">
                     <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
                         <h6>20 Moedas</h6>
                         <button id="btn20" class="ComprarCash">
                             R$ 10,00
-                        </button>                    
-                    </div>                
+                        </button>
+                    </div>
                 </div>
-                <div class="cash mediumcash">    
-                    <img src="./MediumCash.png" alt="">
+                <div class="cash mediumcash">
+                    <img src="./../assets/MediumCash.png" alt="">
                     <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
                         <h6>40 Moedas</h6>
                         <button id="btn40" class="ComprarCash">
                             R$ 15,00
-                        </button>                    
-                    </div>             
+                        </button>
+                    </div>
                 </div>
                 <div class="cash max-cash">
-                    <img src="./MaxCash.png" alt="">
+                    <img src="./../assets/MaxCash.png" alt="">
                     <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
                         <h6>100 Moedas</h6>
                         <button id="btn100" class="ComprarCash">
                             R$ 25,00
-                        </button>                    
-                    </div> 
+                        </button>
+                    </div>
                 </div>
                 <div class="cash max-cash">
-                    <img src="./MaxCash.png" alt="">
+                    <img src="./../assets/MaxCash.png" alt="">
                     <div class="cash-info d-flex flex-wrap justify-content-center align-items-center">
                         <h6>300 Moedas</h6>
                         <button id="btn300" class="ComprarCash">
                             R$ 40,00
-                        </button>                    
-                    </div> 
+                        </button>
+                    </div>
                 </div>
                 <div class="promotional-cash d-flex justify-content-center align-items-center">
                     <button class="super-oferta d-flex justify-content-center align-items-center">
                         <h4>SUPER OFERTA&nbsp;&nbsp;</h4>
                         <i class="fa fa-diamond" aria-hidden="true"></i>
-                    </button>  
+                    </button>
                 </div>
             </div>
         </section>
-    </main>
-    <script src="./CompraSkins.js" defer></script>
-  </body>
+        </main>
+        <div class="loading" id="div-loading">
+            <img class="img-loading" src='./../assets/Loading.gif' alt="Loading">
+        </div>
+        <script src="./CompraSkins.js" defer></script>
+</body>
+
 </html>

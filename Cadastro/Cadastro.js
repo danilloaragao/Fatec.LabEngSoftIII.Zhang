@@ -1,4 +1,7 @@
+pararLoading()
+
 function cadastro() {
+    inicarLoading()
     let Login = document.getElementById('name').value;
     let Senha = document.getElementById('password').value;
     let Email = document.getElementById('email').value;
@@ -24,7 +27,11 @@ function cadastro() {
             alert(result)
             window.location.href = "./../Login/Login.html"
         })
-        .catch(error => alert(error));
+        .then(() => pararLoading())
+        .catch(error => {
+            pararLoading()
+            alert(error)
+        });
 
 }
 
@@ -168,10 +175,22 @@ let submit = document.getElementById("btn-submit");
 let validator = new Validator();
 
 submit.addEventListener('click', function (e) {
+    inicarLoading()
     e.preventDefault();
 
     validator.validate(form);
+    pararLoading()
     if (!validator.contemErros) {
         cadastro()
     }
 });
+
+function inicarLoading() {
+    document.getElementById('div-loading').style.display = 'flex';
+    console.log('ini')
+}
+
+function pararLoading() {
+    document.getElementById('div-loading').style.display = 'none';
+    console.log('fim')
+}

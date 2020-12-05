@@ -7,8 +7,9 @@ var btnRedefinirSenha = document.getElementById('btn-enviar');
 var btnAbrirModal = document.getElementById('lnk-red-senha');
 var btnFecharModal = document.getElementById('btn-fechar');
 
+pararLoading()
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     getLocalUserInformation();
     getRanking();
 });
@@ -17,19 +18,19 @@ document.addEventListener("DOMContentLoaded", function(){
 btnAbrirModal.addEventListener('click', abrirModal)
 
 btnFecharModal.addEventListener('click', fecharModal)
-       
+
 senha.addEventListener('keyup', validarSenha);
 
 
- senhaConf.addEventListener('focus', function(){
-     senhaConf.addEventListener('keyup', validarSenha)
- })
+senhaConf.addEventListener('focus', function () {
+    senhaConf.addEventListener('keyup', validarSenha)
+})
 
 btnRedefinirSenha.addEventListener('click', putNovaSenha);
 
-function getLocalUserInformation(){
+function getLocalUserInformation() {
     var usuario = JSON.parse(localStorage.getItem("usuario"))
-    var usernameVar =  usuario.login;
+    var usernameVar = usuario.login;
     var emailVar = usuario.email;
 
     username.innerHTML = usernameVar;
@@ -40,14 +41,14 @@ function validarSenha() {
     var novaSenha = senha.value;
     var novaSenhaConf = senhaConf.value;
     var teste = false;
-    
-    if(novaSenha.length === 0 || novaSenha.length < 6){
+
+    if (novaSenha.length === 0 || novaSenha.length < 6) {
         msgErroSenha.innerHTML = "Senha deve ter no mínimo 6 caracteres";
         senha.style.borderBottomColor = "red";
-    }else if(novaSenha != novaSenhaConf){
+    } else if (novaSenha != novaSenhaConf) {
         senhaConf.style.borderBottomColor = "red";
         msgErroSenha.innerHTML = "Senhas não coicidem!";
-    }else if(novaSenha && novaSenhaConf && novaSenha === novaSenhaConf){
+    } else if (novaSenha && novaSenhaConf && novaSenha === novaSenhaConf) {
         senha.style.borderBottomColor = "#942fd8";
         senhaConf.style.borderBottomColor = "#942fd8";
         msgErroSenha.innerHTML = "";
@@ -57,11 +58,11 @@ function validarSenha() {
     return teste;
 }
 
-function abrirModal(){
+function abrirModal() {
     document.getElementById('modal-container').style.display = "flex";
 }
 
-function fecharModal(){
+function fecharModal() {
     document.getElementById('modal-container').style.display = "none";
     document.querySelector('.modal-content').style.display = 'flex';
     document.querySelector('.msg-modal').style.display = 'none';
@@ -72,50 +73,53 @@ function fecharModal(){
     msgErroSenha.innerHTML = "";
 }
 
-function mensagemModal(mensagem){
+function mensagemModal(mensagem) {
     document.querySelector('.modal-content').style.display = 'none';
     document.querySelector('.msg-modal').style.display = 'flex'
-    document.querySelector('.msg-modal').innerHTML = mensagem ;      
+    document.querySelector('.msg-modal').innerHTML = mensagem;
 }
 
 
-function putNovaSenha(){
+function putNovaSenha() {
+    inicarLoading()
+    if (validarSenha()) {
+        var usuario = JSON.parse(localStorage.getItem("usuario"))
+        var token = usuario.token;
+        var id = usuario.id;
+        var novaSenha = senha.value;
 
-if (validarSenha()){
-    var usuario = JSON.parse(localStorage.getItem("usuario"))
-    var token = usuario.token;
-    var id = usuario.id;
-    var novaSenha = senha.value; 
+        var raw = {
+            "Id": id,
+            "Senha": novaSenha
+        }
 
-    var raw = {
-        "Id": id,
-        "Senha": novaSenha
-    }    
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "text/plain");
+        myHeaders.append("Content-Type", "application/json-patch+json");
+        myHeaders.append("token", token);
 
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "text/plain");
-    myHeaders.append("Content-Type", "application/json-patch+json");
-    myHeaders.append("token", token);
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: JSON.stringify(raw),
+            redirect: 'follow'
+        }
 
-    var requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: JSON.stringify(raw),
-        redirect: 'follow'
-    }
-    
         fetch("https://zhang-api.herokuapp.com/api/Usuario/AlterarDados", requestOptions)
-        .then(response => response.text()) 
-        .then(result => {
-            mensagemModal('Senha atualizada com sucesso!');
-        }) 
-        .catch(error => {
-            mensagemModal('Erro ao redefinir senha, tente mais tarde');
-        }); 
+            .then(response => response.text())
+            .then(result => {
+                mensagemModal('Senha atualizada com sucesso!');
+            })
+            .then(() => pararLoading())
+            .catch(error => {
+                pararLoading()
+                mensagemModal('Erro ao redefinir senha, tente mais tarde');
+            });
     }
 }
 
-function getRanking(){
+function getRanking() {
+    inicarLoading()
     var usuario = JSON.parse(localStorage.getItem("usuario"))
     var token = usuario.token;
 
@@ -128,19 +132,20 @@ function getRanking(){
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
-    }  
-       
+    }
+
 
     fetch("https://zhang-api.herokuapp.com/api/Jogo/Ranking", requestOptions)
-        .then(response => response.json()) 
-        .then(data => { showRanking(data);}) 
-        .catch(error => {});
+        .then(response => response.json())
+        .then(data => { showRanking(data); })
+        .then(() => pararLoading())
+        .catch(() => pararLoading());
 }
 
 
-function showRanking(rankingArray){
-    var htmlRanking = rankingArray.map( user => {
-       return `
+function showRanking(rankingArray) {
+    var htmlRanking = rankingArray.map(user => {
+        return `
                 <li><div class="item-ranking">
                 <span>${user.posicao}</span> 
                 <span>${user.login}</span> 
@@ -149,4 +154,14 @@ function showRanking(rankingArray){
     }).join("");
 
     document.querySelector(".lista-ranking").innerHTML = htmlRanking;
+}
+
+function inicarLoading() {
+    document.getElementById('div-loading').style.display = 'flex';
+    console.log('ini')
+}
+
+function pararLoading() {
+    document.getElementById('div-loading').style.display = 'none';
+    console.log('fim')
 }

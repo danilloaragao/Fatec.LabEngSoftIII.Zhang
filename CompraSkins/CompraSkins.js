@@ -1,4 +1,4 @@
-localStorage.setItem ("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYW1laWQiOiJTdXBlclVzZXIiLCJpc2FkbSI6IjEifQ.22d5M8Zgg-Kh0CUAKVmntMuliEegGJ-MR4opvvfiQdk")
+localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYW1laWQiOiJTdXBlclVzZXIiLCJpc2FkbSI6IjEifQ.22d5M8Zgg-Kh0CUAKVmntMuliEegGJ-MR4opvvfiQdk")
 
 const allSkins = [];
 const APIURLSkins = "https://zhang-api.herokuapp.com/api/Administracao/Skins";
@@ -16,57 +16,63 @@ const btn100 = document.getElementById('btn100');
 const btn300 = document.getElementById('btn300');
 let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false, positiveFoundings = false, userSkins = [];
 
-
 var selectedSkin;
 var drawInterval;
 
-async function getSkins (url, token){  
+pararLoading()
+
+async function getSkins(url, token) {
+    inicarLoading()
     var myHeaders = new Headers();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
     myHeaders.append("token", token)
 
     var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
     };
-    
+
     //load();
     const resp = await fetch(url, requestOptions);
     const respData = await resp.json();
 
     showSkins(respData);
+    pararLoading()
 }
 
-async function getSkinsUser (url, token){  
+async function getSkinsUser(url, token) {
+    inicarLoading()
     var myHeaders = new Headers();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
     myHeaders.append("token", token)
 
     var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
     };
-    
+
     //load();
     const resp = await fetch(url, requestOptions);
     const respData = await resp.json();
 
     userSkins = (respData);
+    pararLoading()
 }
 
-function showSkins (skins) {    
-    var count = 0; 
+function showSkins(skins) {
+    inicarLoading()
+    var count = 0;
     clearInterval(drawInterval);
-    skinsSpace.innerHTML = '';   
+    skinsSpace.innerHTML = '';
     skins.forEach((skin, index) => {
-        if (count < 4) {            
-            const {isVip, valorCash} = skin;
-            if(isVip){
-                
+        if (count < 4) {
+            const { isVip, valorCash } = skin;
+            if (isVip) {
+
                 let tagVip = "";
                 tagVip = '<i class="fa fa-star chequed"></i>';
 
@@ -80,10 +86,10 @@ function showSkins (skins) {
                 let tagBtn = "";
 
                 purchasedSkin(skin.id)
-                if( purchased == true){                    
+                if (purchased == true) {
                     tagBtn = '<i class="fa fa-check"> Comprado </i>'
                 }
-                else{
+                else {
                     tagBtn = `<button id="btnskin${count}" class="comprar-skin d-flex justify-content-center align-items-center">
                                 Comprar
                             </button>`
@@ -108,36 +114,37 @@ function showSkins (skins) {
                 canvasEl.className = "canvas";
                 skinEl.append(canvasEl);
                 skinsSpace.appendChild(skinEl);
-                skinMovement (`data:image/png;base64, ${skin.sprite}`, 0, canvasEl.id)
-                count ++;
+                skinMovement(`data:image/png;base64, ${skin.sprite}`, 0, canvasEl.id)
+                count++;
             }
         }
-    }); 
+    });
     btnSkin0 = document.getElementById('btnskin0');
     btnSkin1 = document.getElementById('btnskin1');
     btnSkin2 = document.getElementById('btnskin2');
     btnSkin3 = document.getElementById('btnskin3');
-    
-    if(allSkins[0] != undefined && btnSkin0 != undefined){
-        btnSkin0.onclick = function() {
+
+    if (allSkins[0] != undefined && btnSkin0 != undefined) {
+        btnSkin0.onclick = function () {
             comprarSkin(allSkins[0].id);
         }
-    }        
-    if(allSkins[1] != undefined && btnSkin1 != undefined) {
-        btnSkin1.onclick = function() {
+    }
+    if (allSkins[1] != undefined && btnSkin1 != undefined) {
+        btnSkin1.onclick = function () {
             comprarSkin(allSkins[1].id);
         }
     }
-    if(allSkins[2] != undefined && btnSkin2 != undefined) {
-        btnSkin2.onclick = function() {
+    if (allSkins[2] != undefined && btnSkin2 != undefined) {
+        btnSkin2.onclick = function () {
             comprarSkin(allSkins[2].id);
         }
     }
-    if(allSkins[3] != undefined && btnSkin3 != undefined) {
-        btnSkin3.onclick = function() { 
+    if (allSkins[3] != undefined && btnSkin3 != undefined) {
+        btnSkin3.onclick = function () {
             comprarSkin(allSkins[3].id);
-        }        
+        }
     }
+    pararLoading()
 }
 
 
@@ -182,7 +189,7 @@ function configSkin (skinId, canvasId) {
 };
 */
 
-function skinMovement (src, movement, canvasId) {
+function skinMovement(src, movement, canvasId) {
     var srcX;
     var srcy;
     var sheetWidth = 3000;
@@ -192,7 +199,7 @@ function skinMovement (src, movement, canvasId) {
     var height = sheetHeight / 5;
 
     var maxWidth = width / 2.5;
-    var maxHeight = height / 6;   
+    var maxHeight = height / 6;
 
     var currentFrame = 0;
 
@@ -208,7 +215,7 @@ function skinMovement (src, movement, canvasId) {
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, maxWidth, maxHeight);
 
-    function updateFrame () {
+    function updateFrame() {
         currentFrame = ++currentFrame % 5;
         srcX = currentFrame * width;
         srcy = movement * height;
@@ -216,17 +223,17 @@ function skinMovement (src, movement, canvasId) {
         ctx.clearRect(0, 0, maxWidth, maxHeight);
     };
 
-    function drawImage () {
+    function drawImage() {
         updateFrame();
         ctx.drawImage(character, srcX, srcy, width, height, 0, 0, maxWidth, maxHeight);
-    };    
+    };
 
     drawInterval = setInterval((e) => {
         drawImage();
     }, 100);
 };
 
-function getSaldo () {
+function getSaldo() {
     var saldo = document.getElementById("saldo");
     saldo.innerHTML = '';
     saldo.innerHTML = `<h2>SALDO:&nbsp;${user.cash}</h2>`;
@@ -236,21 +243,23 @@ function getSaldo () {
 getSaldo();
 
 async function buyCash(url, token, qtdCoins) {
+    inicarLoading()
     var myHeaders = new Headers();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
     myHeaders.append("token", token)
 
     var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    redirect: 'follow',
-    body: qtdCoins    
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow',
+        body: qtdCoins
     };
     //load();
     const resp = await fetch(url, requestOptions);
     user.cash = await resp.json();
     getSaldo();
+    pararLoading()
 }
 
 function comprarCash(qtdeMoedas) {
@@ -258,30 +267,31 @@ function comprarCash(qtdeMoedas) {
     getSaldo();
 }
 
-btn20.onclick = function() {
+btn20.onclick = function () {
     comprarCash(20);
 };
-btn40.onclick = function() {
+btn40.onclick = function () {
     comprarCash(40);
 };
-btn100.onclick = function() {
+btn100.onclick = function () {
     comprarCash(100);
 };
-btn300.onclick = function() {
+btn300.onclick = function () {
     comprarCash(300);
 };
 
-function purchasedSkin (skinID) {
+function purchasedSkin(skinID) {
     purchased = false;
     userSkins.forEach((skin) => {
-        if(skin.id == skinID) {
+        if (skin.id == skinID) {
             purchased = true;
         }
-    });    
+    });
 }
 
 async function buySkin(url, token, IdSkin) {
-    var myHeaders = new Headers();    
+    inicarLoading()
+    var myHeaders = new Headers();
     var skin = new Object();
     myHeaders.append("Accept", "text/plain");
     myHeaders.append("Content-Type", "application/json-patch+json");
@@ -289,36 +299,37 @@ async function buySkin(url, token, IdSkin) {
     myHeaders.append("origin", "https://zhang-api.herokuapp.com");
 
     skin = {
-        "IdSkin" : IdSkin
+        "IdSkin": IdSkin
     };
 
     var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    redirect: 'follow'
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
     };
 
     //load();
-    const resp = await fetch(url+`?idSkin=${IdSkin}`, requestOptions);
+    const resp = await fetch(url + `?idSkin=${IdSkin}`, requestOptions);
     const respData = await resp.json();
     user = respData;
     localStorage.setItem("usuario", JSON.stringify(respData));
+    pararLoading()
 }
 
 function comprarSkin(skinID) {
     validFoundings(skinID);
-    if(positiveFoundings == true) {
+    if (positiveFoundings == true) {
         buySkin(APIURLBuySkin, user.token, skinID);
         getSkinsUser(APIURLSkinsUser, user.token);
         getSkins(APIURLSkins, localStorage.getItem("token"));
-        updateFoundings(skinID);        
+        updateFoundings(skinID);
     }
 }
 
 function validFoundings(skinID) {
     let skinObj = allSkins.find(x => x.id == skinID);
     let saldo = user.cash - skinObj.valorCash;
-    if(saldo < 0) {
+    if (saldo < 0) {
         positiveFoundings = false;
         alert(`Saldo insuficiente para compra de skin!\nMoedas necessárias: ${Math.abs(saldo)}\nCompre moedas ou ganhe durante as partidadas!`);
     }
@@ -328,12 +339,19 @@ function validFoundings(skinID) {
     skinObj = "";
 }
 
-function updateFoundings (skinID) {
+function updateFoundings(skinID) {
     let skinObj = allSkins.find(x => x.id == skinID);
     user.cash -= skinObj.valorCash;
     positiveFoundings = true;
     getSaldo();
 }
 
+function inicarLoading() {
+    document.getElementById('div-loading').style.display = 'flex';
+    console.log('ini')
+}
 
-
+function pararLoading() {
+    document.getElementById('div-loading').style.display = 'none';
+    console.log('fim')
+}
