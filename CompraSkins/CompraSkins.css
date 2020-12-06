@@ -108,10 +108,12 @@ body {
     margin: 0.5rem 0.5rem;    
     overflow: hidden;
     width: 310px;
-    height: 50px;
+    height: 70px;
 }
 
 .promotional-cash button {
+    display: flex;
+    flex-wrap: wrap;
     background-color: #713897;
     color: white;
     width: 100%;

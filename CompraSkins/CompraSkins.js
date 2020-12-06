@@ -14,6 +14,7 @@ const btn20 = document.getElementById('btn20');
 const btn40 = document.getElementById('btn40');
 const btn100 = document.getElementById('btn100');
 const btn300 = document.getElementById('btn300');
+const btnSO = document.getElementById('btnSO');
 let btnSkin0 = "", btnSkin1 = "", btnSkin2 = "", btnSkin3 = "", purchased = false, positiveFoundings = false, userSkins = [];
 
 var selectedSkin;
@@ -279,6 +280,10 @@ btn100.onclick = function () {
 btn300.onclick = function () {
     comprarCash(300);
 };
+btnSO.onclick = function () {
+    comprarCash(500);
+};
+
 
 function purchasedSkin(skinID) {
     purchased = false;
@@ -316,14 +321,17 @@ async function buySkin(url, token, IdSkin) {
     pararLoading()
 }
 
-function comprarSkin(skinID) {
+async function comprarSkin(skinID) {    
     validFoundings(skinID);
+    inicarLoading()
     if (positiveFoundings == true) {
-        buySkin(APIURLBuySkin, user.token, skinID);
-        getSkinsUser(APIURLSkinsUser, user.token);
-        getSkins(APIURLSkins, localStorage.getItem("token"));
-        updateFoundings(skinID);
+        await buySkin(APIURLBuySkin, user.token, skinID);
+        await getSkinsUser(APIURLSkinsUser, user.token);
+        await getSkins(APIURLSkins, localStorage.getItem("token"));
+        getSaldo();
+        //updateFoundings(skinID);
     }
+    pararLoading();
 }
 
 function validFoundings(skinID) {
@@ -339,12 +347,13 @@ function validFoundings(skinID) {
     skinObj = "";
 }
 
+/*
 function updateFoundings(skinID) {
     let skinObj = allSkins.find(x => x.id == skinID);
     user.cash -= skinObj.valorCash;
     positiveFoundings = true;
     getSaldo();
-}
+}*/
 
 function inicarLoading() {
     document.getElementById('div-loading').style.display = 'flex';
